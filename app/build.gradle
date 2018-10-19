@@ -5,6 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'davidetruong'
+            keyPassword 'Halong14'
+            storeFile file('/Users/davidetruong/Documents/My Documents/android.jks')
+            storePassword 'Halong14'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "app.cmtruong.com.quickmovies"
@@ -14,6 +22,7 @@ android {
         multiDexEnabled true
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -21,6 +30,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
     task installRelease(group: 'install', dependsOn: 'installFreeRelease') {
@@ -39,15 +52,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     flavorDimensions 'version'
-
     productFlavors {
         free {
             dimension 'version'
             applicationIdSuffix '.free'
+            minSdkVersion 23
+            signingConfig signingConfigs.config
         }
         paid {
             dimension 'version'
             applicationIdSuffix '.paid'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -76,7 +91,7 @@ ext {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportLibrariesVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintVersion"
