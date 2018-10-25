@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Quick Movies</string>
     <string name="error_in_loading_data">Error by loading data</string>
+    <string name="movie_poster">movie poster</string>
 </resources>
