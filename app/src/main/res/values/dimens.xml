@@ -3,4 +3,5 @@
     <dimen name="app_bar_layout_elevation">4dp</dimen>
     <dimen name="collapse_expandedTitle_end">64dp</dimen>
     <dimen name="collapse_tb_expandedTitle_start">48dp</dimen>
+    <dimen name="padding_rv_movies">4dp</dimen>
 </resources>
