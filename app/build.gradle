@@ -85,11 +85,13 @@ ext {
     androidAdmodVersion = '15.0.1'
     lifecycleVersion = '1.1.1'
     roomVersion = '1.1.1'
-    butterknife = '8.8.1'
     timberVersion = '4.7.1'
     gsonVersion = '2.8.5'
     picasso = '2.71828'
     glide = '4.8.0'
+    stateVersion = '1.4.1'
+    retrofitVersion = '2.4.0'
+    okhttpVersion = '3.11.0'
 }
 
 dependencies {
@@ -104,9 +106,12 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$supportTestVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
-    implementation "com.github.bumptech.glide:glide:$glide"
-    kapt "com.github.bumptech.glide:compiler:$glide"
+    implementation "com.squareup.picasso:picasso:$picasso"
     implementation "com.jakewharton.timber:timber:$timberVersion"
-    implementation "com.jakewharton:butterknife:$butterknife"
-    kapt "com.jakewharton:butterknife-compiler:$butterknife"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion") {
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 }

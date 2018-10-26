@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".views.activities.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main_toolbar_container"
@@ -17,11 +17,11 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/main_collapsing_tb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:expandedTitleMarginEnd="@dimen/collapse_expandedTitle_end"
             app:expandedTitleMarginStart="@dimen/collapse_tb_expandedTitle_start"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
