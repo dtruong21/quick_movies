@@ -1,5 +1,7 @@
 package app.cmtruong.com.quickmovies.models
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -11,4 +13,7 @@ import kotlinx.android.parcel.Parcelize
  * @since October 19th, 2018
  */
 @Parcelize
-data class Reviews(var id: String, var author: String, var content: String, var url: String) : Parcelable
+data class Reviews constructor(var id: String,
+                               var author: String,
+                               var content: String,
+                               var url: String) : Parcelable
