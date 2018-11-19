@@ -3,6 +3,7 @@ package app.cmtruong.com.quickmovies.services.remote
 import android.content.res.Resources
 import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
+import app.cmtruong.com.quickmovies.models.MoviesResult
 import app.cmtruong.com.quickmovies.models.Reviews
 import app.cmtruong.com.quickmovies.models.Videos
 import okhttp3.Interceptor
@@ -22,13 +23,13 @@ import retrofit2.http.Query
 interface MoviesRemoteAPI {
 
     @GET("/trending/movie/week")
-    fun getTrendingPerWeek(@Query("api_key") apiKey: String): Call<List<Movies>>
+    fun getTrendingPerWeek(@Query("api_key") apiKey: String): Call<MoviesResult>
 
     @GET("/movie/popular")
-    fun getPopularMovies(@Query("api_key") apiKey: String): Call<List<Movies>>
+    fun getPopularMovies(@Query("api_key") apiKey: String): Call<MoviesResult>
 
     @GET("/movie/top_rated")
-    fun getTopRatedMovies(@Query("api_key") apiKey: String): Call<List<Movies>>
+    fun getTopRatedMovies(@Query("api_key") apiKey: String): Call<MoviesResult>
 
     @GET("{movie_id}/reviews")
     fun getMovieReviewsById(@Path("movie_id") id: Int, @Query("api_key") apiKey: String): Call<List<Reviews>>

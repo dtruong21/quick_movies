@@ -17,7 +17,7 @@ import timber.log.Timber
  * @version 1.0
  * @since October 25th, 2018
  */
-class MoviesAdapter(private val context: Context, private val movies: List<Movies>) : RecyclerView.Adapter<MoviesViewHolder>() {
+class MoviesAdapter(private val context: Context?, private val movies: List<Movies>) : RecyclerView.Adapter<MoviesViewHolder>() {
 
     companion object {
         @JvmStatic
@@ -41,7 +41,10 @@ class MoviesAdapter(private val context: Context, private val movies: List<Movie
         holder.bind(movie)
     }
 
+    fun getMovies(): List<Movies> = movies
+
 }
+
 /**
  *
  * Movie ViewHolder class

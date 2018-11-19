@@ -6,4 +6,5 @@
     <string name="video_url">http://img.youtube.com/vi/</string>
     <string name="video_play_url">http://www.youtube.com/watch?v=</string>
     <string name="poster_url">http://image.tmdb.org/t/p/w185</string>
+    <string name="api_key">ee1b47f142dfc5e38d8fc312dc5d9dad</string>
 </resources>

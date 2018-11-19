@@ -92,6 +92,7 @@ ext {
     stateVersion = '1.4.1'
     retrofitVersion = '2.4.0'
     okhttpVersion = '3.11.0'
+    coroutines = '1.0.1'
 }
 
 dependencies {
@@ -119,6 +120,8 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
     implementation "android.arch.lifecycle:viewmodel:$lifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycleVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 }
 
 kotlin {
