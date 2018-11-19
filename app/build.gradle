@@ -120,3 +120,9 @@ dependencies {
     implementation "android.arch.lifecycle:viewmodel:$lifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycleVersion"
 }
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}

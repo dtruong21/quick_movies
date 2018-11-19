@@ -38,8 +38,10 @@ interface MoviesRemoteAPI {
 
     companion object {
         fun create(): MoviesRemoteAPI {
-            val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(Resources.getSystem().getString(R.string.api_url)).build()
+            val retrofit = Retrofit.Builder()
+                    .baseUrl(Resources.getSystem().getString(R.string.api_url))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
             return retrofit.create(MoviesRemoteAPI::class.java)
         }
     }
