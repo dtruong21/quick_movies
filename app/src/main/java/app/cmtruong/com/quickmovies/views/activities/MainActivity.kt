@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import app.cmtruong.com.quickmovies.R
+import app.cmtruong.com.quickmovies.views.fragments.FavoriteFragment
 import app.cmtruong.com.quickmovies.views.fragments.PopularFragment
 import app.cmtruong.com.quickmovies.views.fragments.TopRatedFragment
 import app.cmtruong.com.quickmovies.views.fragments.TrendingFragment
@@ -25,16 +26,25 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.trending_container, TrendingFragment.getInstance())
+                    .addToBackStack(null)
                     .commit()
 
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.popular_container, PopularFragment.getInstance())
+                    .addToBackStack(null)
                     .commit()
 
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.top_rate_container, TopRatedFragment.getInstance())
+                    .addToBackStack(null)
+                    .commit()
+
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.favorite_container, FavoriteFragment.getInstance())
+                    .addToBackStack(null)
                     .commit()
         }
     }
