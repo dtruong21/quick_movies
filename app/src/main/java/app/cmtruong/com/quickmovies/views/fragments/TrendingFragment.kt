@@ -1,7 +1,7 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +18,12 @@ class TrendingFragment : Fragment() {
         @JvmStatic
         val TAG = TrendingFragment::class.java.canonicalName as String
 
-        @JvmStatic
         fun getInstance(): TrendingFragment = TrendingFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater!!.inflate(R.layout.fragment_trending, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_trending, container, false)
     }
-
     fun showMessageError() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.VISIBLE
