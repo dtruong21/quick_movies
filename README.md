@@ -6,7 +6,7 @@ QuickMovies is a simple solution for everybody to checkout movies information be
 
 ## Principal features
 
-- Listing movies with different criteria (favorite, trending, note)
+- Listing movies with different criteria (favorite, trending, rate, popular)
 - Checkout movies details
 - Open trailer in Youtube app directly
 
@@ -14,9 +14,7 @@ QuickMovies is a simple solution for everybody to checkout movies information be
 
 - Room
 - Live Data
-- Butterknife
-- Glide
-- Google Play Service Admob (Banner and Video Reward)
+- Picasso
 - Timber
 - Espresso Testing UI
 
