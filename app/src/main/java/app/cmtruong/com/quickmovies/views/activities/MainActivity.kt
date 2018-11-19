@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import app.cmtruong.com.quickmovies.R
+import app.cmtruong.com.quickmovies.views.fragments.PopularFragment
+import app.cmtruong.com.quickmovies.views.fragments.TopRatedFragment
 import app.cmtruong.com.quickmovies.views.fragments.TrendingFragment
 import timber.log.Timber
 
@@ -22,6 +24,16 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.trending_container, TrendingFragment.getInstance())
+                    .commit()
+
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.popular_container, PopularFragment.getInstance())
+                    .commit()
+
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.top_rate_container, TopRatedFragment.getInstance())
                     .commit()
         }
     }

@@ -10,19 +10,20 @@ import kotlinx.android.synthetic.main.extras_fragment_container.*
 import timber.log.Timber
 
 /**
- * @author Davide Truong
+ * @author davidetruong
  * @version 1.0
- * @since October 25th, 2018
+ * @since 2018 November 19th
  */
-class TrendingFragment : Fragment() {
+class PopularFragment: Fragment() {
     companion object {
-        fun getInstance(): TrendingFragment = TrendingFragment()
+        fun getInstance(): PopularFragment = PopularFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Timber.d("Create view trending")
-        return inflater.inflate(R.layout.fragment_trending, container, false)
+        Timber.d("Create view popular")
+        return inflater.inflate(R.layout.fragment_popular, container, false)
     }
+
     fun showMessageError() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.VISIBLE
