@@ -43,19 +43,19 @@ class TrendingFragment : Fragment() {
 
     }
 
-    fun showMessageError() {
+    private fun showMessageError() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.VISIBLE
         rv_movies.visibility = View.GONE
     }
 
-    fun showResults() {
+    private fun showResults() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.VISIBLE
     }
 
-    fun loadingData() {
+    private fun loadingData() {
         pb_movie.visibility = View.VISIBLE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.GONE
