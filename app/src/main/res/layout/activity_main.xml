@@ -28,7 +28,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="@dimen/app_bar_layout_elevation">
-
+                <TextView
+                    android:id="@+id/qm_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    style="@android:style/TextAppearance.Material.Title"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -43,33 +48,38 @@
             android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="4dp">
 
             <FrameLayout
                 android:id="@+id/favorite_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/trending_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/top_rate_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/popular_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
             </FrameLayout>
         </LinearLayout>
