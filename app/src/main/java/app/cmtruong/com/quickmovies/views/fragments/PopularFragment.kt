@@ -62,7 +62,7 @@ class PopularFragment : Fragment() {
 
     @WorkerThread
     private fun getMovies() {
-        val mApi = MoviesRemoteAPI.create();
+        val mApi = MoviesRemoteAPI.create()
         val call = mApi.getPopularMovies(getString(R.string.api_key))
         loadingData()
         call.enqueue(object : Callback<MoviesResult> {
