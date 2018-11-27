@@ -11,6 +11,13 @@ import app.cmtruong.com.quickmovies.R
  */
 class MovieDetailActivity : AppCompatActivity() {
 
+    companion object {
+        @JvmStatic
+        val TAG = MovieDetailActivity::class.java.canonicalName as String
+
+        fun getInstance(): MovieDetailActivity = MovieDetailActivity()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
