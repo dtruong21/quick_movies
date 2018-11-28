@@ -18,11 +18,22 @@ import timber.log.Timber
  */
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        @JvmStatic
+        val TAG = MainActivity::class.java.canonicalName as String
+
+        fun getInstance(): MainActivity = MainActivity()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Timber.plant(Timber.DebugTree())
+        Timber.tag(TAG)
+        Timber.d("$TAG is created.")
+
         if (savedInstanceState != null) {
+
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.trending_container, TrendingFragment.getInstance())
