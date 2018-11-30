@@ -9,6 +9,7 @@ import app.cmtruong.com.quickmovies.views.fragments.FavoriteFragment
 import app.cmtruong.com.quickmovies.views.fragments.PopularFragment
 import app.cmtruong.com.quickmovies.views.fragments.TopRatedFragment
 import app.cmtruong.com.quickmovies.views.fragments.TrendingFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 /**
@@ -46,15 +47,8 @@ class MainActivity : AppCompatActivity() {
                     .add(R.id.favorite_container, FavoriteFragment.getInstance())
                     .addToBackStack(null)
                     .commit()
+
+
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
 }
