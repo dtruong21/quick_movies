@@ -29,7 +29,7 @@ class MoviesAdapter(private val context: Context?, private val movies: List<Movi
         val view: View = inflater.inflate(R.layout.movies_item, parent, false)
         Timber.tag(TAG)
         Timber.d("Adapter created")
-        return MoviesViewHolder(view)x
+        return MoviesViewHolder(view)
     }
 
     override fun getItemCount(): Int {
