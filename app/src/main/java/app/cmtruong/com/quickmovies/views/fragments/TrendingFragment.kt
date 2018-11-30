@@ -26,13 +26,16 @@ import timber.log.Timber
  */
 class TrendingFragment : Fragment() {
     companion object {
+        @JvmStatic
+        val TAG = TrendingFragment::class.java.canonicalName as String
+
         fun getInstance(): TrendingFragment = TrendingFragment()
     }
 
     private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Timber.d("Create view trending")
+        Timber.d("$TAG is created")
         val view: View = inflater.inflate(R.layout.fragment_trending, container, false)
         val mRecyclerView = view.findViewById(R.id.rv_movies) as RecyclerView
         mRecyclerView.setHasFixedSize(true)

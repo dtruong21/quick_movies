@@ -43,6 +43,7 @@ class MoviesAdapter(private val context: Context?, private val movies: List<Movi
 
     fun getMovies(): List<Movies> = movies
 
+
 }
 
 /**
