@@ -22,6 +22,8 @@ class MoviesAdapter(private val context: Context?, private val movies: List<Movi
     companion object {
         @JvmStatic
         val TAG = MoviesAdapter::class.java.simpleName as String
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -56,12 +58,20 @@ class MoviesAdapter(private val context: Context?, private val movies: List<Movi
 class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val posterMovie: ImageView = view.poster_movie
 
-    fun bind(movie: Movies) {
-        Picasso.get().load(movie.poster_path)
-                .centerCrop()
+    companion object {
+        @JvmStatic
+        private val POSTER_URL = "http://image.tmdb.org/t/p/w185"
+    }
+
+    private fun ImageView.loadImage(url: String){
+        Picasso.get().load(url)
+                .fit()
                 .error(R.drawable.ic_launcher_background)
                 .placeholder(R.drawable.ic_launcher_background)
-                .into(posterMovie)
+                .into(this)
+    }
+    fun bind(movie: Movies) {
+        posterMovie.loadImage(POSTER_URL + movie.backdrop_path)
     }
 }
 

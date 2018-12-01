@@ -2,9 +2,11 @@
     <string name="app_name">Quick Movies</string>
     <string name="error_in_loading_data">Error by loading data</string>
     <string name="movie_poster">movie poster</string>
-    <string name="api_url">https://api.themoviedb.org/3/movie/</string>
     <string name="video_url">http://img.youtube.com/vi/</string>
     <string name="video_play_url">http://www.youtube.com/watch?v=</string>
     <string name="poster_url">http://image.tmdb.org/t/p/w185</string>
     <string name="api_key">ee1b47f142dfc5e38d8fc312dc5d9dad</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

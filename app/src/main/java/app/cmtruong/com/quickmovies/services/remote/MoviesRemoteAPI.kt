@@ -6,6 +6,7 @@ import app.cmtruong.com.quickmovies.models.Movies
 import app.cmtruong.com.quickmovies.models.MoviesResult
 import app.cmtruong.com.quickmovies.models.Reviews
 import app.cmtruong.com.quickmovies.models.Videos
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -22,13 +23,13 @@ import retrofit2.http.Query
  */
 interface MoviesRemoteAPI {
 
-    @GET("/trending/movie/week")
+    @GET("trending/movie/week")
     fun getTrendingPerWeek(@Query("api_key") apiKey: String): Call<MoviesResult>
 
-    @GET("/movie/popular")
+    @GET("movie/popular")
     fun getPopularMovies(@Query("api_key") apiKey: String): Call<MoviesResult>
 
-    @GET("/movie/top_rated")
+    @GET("movie/top_rated")
     fun getTopRatedMovies(@Query("api_key") apiKey: String): Call<MoviesResult>
 
     @GET("{movie_id}/reviews")
@@ -38,10 +39,13 @@ interface MoviesRemoteAPI {
     fun getMovieTrailersById(@Path("movie_id") id: Int, @Query("api_key") apiKey: String): Call<List<Videos>>
 
     companion object {
+        private const val API_URL: String = "https://api.themoviedb.org/3/"
+
         fun create(): MoviesRemoteAPI {
             val retrofit = Retrofit.Builder()
-                    .baseUrl(Resources.getSystem().getString(R.string.api_url))
+                    .baseUrl(API_URL)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(CoroutineCallAdapterFactory())
                     .build()
             return retrofit.create(MoviesRemoteAPI::class.java)
         }

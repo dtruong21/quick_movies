@@ -28,14 +28,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Timber.d("$TAG is created")
-        if (savedInstanceState != null) {
+
+        if (savedInstanceState == null) {
 
             supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.trending_container, TrendingFragment.getInstance())
+                    .add(R.id.trending_container, TrendingFragment.getInstance(), "trending")
                     .addToBackStack(null)
                     .commit()
 
+/*
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.popular_container, PopularFragment.getInstance())
@@ -53,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                     .add(R.id.favorite_container, FavoriteFragment.getInstance())
                     .addToBackStack(null)
                     .commit()
-
+*/
         }
+
     }
 }
