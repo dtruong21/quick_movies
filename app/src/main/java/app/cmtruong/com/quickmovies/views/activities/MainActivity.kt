@@ -29,26 +29,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Timber.d("$TAG is created")
 
+        // Setup toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         if (savedInstanceState == null) {
+            populateUI()
+        }
+    }
 
-            supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.trending_container, TrendingFragment.getInstance(), "trending")
-                    .addToBackStack(null)
-                    .commit()
+    private fun populateUI(){
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.trending_container, TrendingFragment.getInstance(), "trending")
+                .addToBackStack(null)
+                .commit()
 
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.popular_container, PopularFragment.getInstance())
+                .addToBackStack(null)
+                .commit()
 
-            supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.popular_container, PopularFragment.getInstance())
-                    .addToBackStack(null)
-                    .commit()
-
-            supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.top_rate_container, TopRatedFragment.getInstance())
-                    .addToBackStack(null)
-                    .commit()
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.top_rate_container, TopRatedFragment.getInstance())
+                .addToBackStack(null)
+                .commit()
 /*
             supportFragmentManager
                     .beginTransaction()
@@ -56,7 +63,5 @@ class MainActivity : AppCompatActivity() {
                     .addToBackStack(null)
                     .commit()
 */
-        }
-
     }
 }

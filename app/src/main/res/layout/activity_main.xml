@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -18,7 +19,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/main_collapsing_tb"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:expandedTitleMarginEnd="@dimen/collapse_expandedTitle_end"
             app:expandedTitleMarginStart="@dimen/collapse_tb_expandedTitle_start"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
@@ -26,14 +27,13 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:elevation="@dimen/app_bar_layout_elevation">
-                <TextView
-                    android:id="@+id/qm_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    style="@android:style/TextAppearance.Material.Title"/>
+
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -42,7 +42,8 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/main_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/main_container"
