@@ -6,9 +6,10 @@
     <string name="video_play_url">http://www.youtube.com/watch?v=</string>
     <string name="poster_url">http://image.tmdb.org/t/p/w185</string>
     <string name="api_key">ee1b47f142dfc5e38d8fc312dc5d9dad</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test_rate">4/5</string>
     <string name="test_title">Avengers 4</string>
+    <string name="trending_title">Trending movies</string>
+    <string name="popular_movies">Popular movies</string>
+    <string name="top_rated_movies">Top rated movies</string>
+    <string name="your_favorites">Your favorites</string>
 </resources>

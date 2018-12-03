@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/pb_movie"
-            style="@android:style/Widget.ProgressBar.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/movie_error"
-            style="@android:style/TextAppearance.Material.Medium"
-            android:layout_width="wrap_content"
+            android:id="@+id/trending_title"
+            style="@android:style/TextAppearance.Material.WindowTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/error_in_loading_data" />
+            android:layout_margin="@dimen/margin_title"
+            android:text="@string/popular_movies" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_movies"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:clipToPadding="true"
-            android:padding="@dimen/padding_rv_movies">
+            android:padding="@dimen/padding_rl">
 
-        </android.support.v7.widget.RecyclerView>
-    </RelativeLayout>
+            <ProgressBar
+                android:id="@+id/pb_movie"
+                style="@android:style/Widget.ProgressBar.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/movie_error"
+                style="@android:style/TextAppearance.Material.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/error_in_loading_data" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_movies"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_rv"
+                android:background="@android:color/transparent"
+                android:clipToPadding="true"
+                android:padding="@dimen/padding_rv_movies">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>

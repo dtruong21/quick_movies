@@ -28,11 +28,11 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:elevation="@dimen/app_bar_layout_elevation"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                android:elevation="@dimen/app_bar_layout_elevation">
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -55,15 +55,15 @@
             <FrameLayout
                 android:id="@+id/favorite_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:padding="5dp">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/trending_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:padding="5dp">
 
             </FrameLayout>
@@ -71,7 +71,7 @@
             <FrameLayout
                 android:id="@+id/top_rate_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:padding="5dp">
 
             </FrameLayout>
@@ -79,7 +79,7 @@
             <FrameLayout
                 android:id="@+id/popular_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:padding="5dp">
 
             </FrameLayout>
