@@ -1,10 +1,8 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
 import android.os.Bundle
-import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,11 @@ import app.cmtruong.com.quickmovies.adapters.MoviesAdapter
 import app.cmtruong.com.quickmovies.models.Movies
 import app.cmtruong.com.quickmovies.models.MoviesResult
 import app.cmtruong.com.quickmovies.services.remote.MoviesRemoteAPI
-import kotlinx.android.synthetic.main.extras_fragment_container.*
+import kotlinx.android.synthetic.main.fragment_popular.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,20 +28,25 @@ import timber.log.Timber
  */
 class PopularFragment : Fragment() {
     companion object {
+        @JvmStatic
+        private val TAG = PopularFragment::class.java.canonicalName as String
+
+        private val viewModelJob = Job()
+        private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
         fun getInstance(): PopularFragment = PopularFragment()
     }
 
-    private lateinit var moviesAdapter: MoviesAdapter
+    private var moviesAdapter: MoviesAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Timber.d("Create view popular")
-        val view: View = inflater.inflate(R.layout.fragment_popular, container, false)
-        val mRecyclerView = view.findViewById(R.id.rv_movies) as RecyclerView
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        mRecyclerView.adapter = moviesAdapter
+        Timber.d("$TAG is created")
+        return inflater.inflate(R.layout.fragment_popular, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         getMovies()
-        return view
     }
 
     private fun showMessageError() {
@@ -60,29 +67,34 @@ class PopularFragment : Fragment() {
         rv_movies.visibility = View.GONE
     }
 
-    @WorkerThread
     private fun getMovies() {
-        val mApi = MoviesRemoteAPI.create()
-        val call = mApi.getPopularMovies(getString(R.string.api_key))
-        loadingData()
-        call.enqueue(object : Callback<MoviesResult> {
-            override fun onResponse(call: Call<MoviesResult>, response: Response<MoviesResult>) {
-                Timber.d("Start requesting")
-                val statusCode: Int? = response.code()
-                if (response.isSuccessful && statusCode == 200){
-                    Timber.d("Request OK%s", response.body())
-                    val result: MoviesResult? = response.body()
-                    val movies: List<Movies>? = result?.movies
-                    moviesAdapter = MoviesAdapter(context, movies!!)
-                    showResults()
+        Timber.d("$TAG starts service")
+        uiScope.launch {
+            val mApi = MoviesRemoteAPI.create()
+            val call = mApi.getPopularMovies(getString(R.string.api_key))
+            loadingData()
+            call.enqueue(object : Callback<MoviesResult> {
+                override fun onResponse(call: Call<MoviesResult>, response: Response<MoviesResult>) {
+                    Timber.d("$TAG starts requesting")
+                    val statusCode: Int? = response.code()
+                    if (response.isSuccessful && statusCode == 200) {
+                        Timber.d("$TAG request OK%s", response.body())
+                        val result: MoviesResult? = response.body()
+                        val movies: List<Movies>? = result?.movies
+                        if (movies != null)
+                            moviesAdapter = MoviesAdapter(context, movies)
+                        rv_movies.setHasFixedSize(true)
+                        rv_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                        rv_movies.adapter = moviesAdapter
+                        showResults()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<MoviesResult>, t: Throwable) {
-                showMessageError()
-                Timber.d("Request KO, please check your internet")
-            }
-
-        })
+                override fun onFailure(call: Call<MoviesResult>, t: Throwable) {
+                    showMessageError()
+                    Timber.d("$TAG request KO, please check your internet")
+                }
+            })
+        }
     }
 }

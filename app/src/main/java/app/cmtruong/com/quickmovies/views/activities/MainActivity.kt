@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     .addToBackStack(null)
                     .commit()
 
-/*
+
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.popular_container, PopularFragment.getInstance())
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                     .add(R.id.top_rate_container, TopRatedFragment.getInstance())
                     .addToBackStack(null)
                     .commit()
-
+/*
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.favorite_container, FavoriteFragment.getInstance())

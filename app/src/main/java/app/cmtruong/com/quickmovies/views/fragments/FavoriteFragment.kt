@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.cmtruong.com.quickmovies.R
-import kotlinx.android.synthetic.main.extras_fragment_container.*
+import kotlinx.android.synthetic.main.fragment_favorite.*
 import timber.log.Timber
 
 /**
@@ -17,11 +17,14 @@ import timber.log.Timber
 class FavoriteFragment: Fragment() {
 
     companion object {
+        @JvmStatic
+        private val TAG = FavoriteFragment::class.java.canonicalName
+
         fun getInstance(): FavoriteFragment = FavoriteFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Timber.d("Favorite fragment created ...")
+        Timber.d("$TAG is created ...")
         return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 

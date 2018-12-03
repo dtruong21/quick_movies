@@ -1,10 +1,8 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
 import android.os.Bundle
-import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,11 @@ import app.cmtruong.com.quickmovies.adapters.MoviesAdapter
 import app.cmtruong.com.quickmovies.models.Movies
 import app.cmtruong.com.quickmovies.models.MoviesResult
 import app.cmtruong.com.quickmovies.services.remote.MoviesRemoteAPI
-import kotlinx.android.synthetic.main.extras_fragment_container.*
+import kotlinx.android.synthetic.main.fragment_top_rate.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,19 +28,26 @@ import timber.log.Timber
  */
 class TopRatedFragment : Fragment() {
     companion object {
+
+        @JvmStatic
+        private val TAG = TopRatedFragment::class.java.canonicalName as String
+
+        private val viewModelJob = Job()
+        private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
         fun getInstance(): TopRatedFragment = TopRatedFragment()
     }
 
     private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.fragment_top_rate, container, false)
-        val mRecyclerView = view.findViewById(R.id.rv_movies) as RecyclerView
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        mRecyclerView.adapter = moviesAdapter
+        Timber.d("$TAG is created")
+        return inflater.inflate(R.layout.fragment_top_rate, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         getMovies()
-        return view
     }
 
     private fun showMessageError() {
@@ -59,28 +68,33 @@ class TopRatedFragment : Fragment() {
         rv_movies.visibility = View.GONE
     }
 
-    @WorkerThread
     private fun getMovies() {
-        val mApi = MoviesRemoteAPI.create()
-        val call = mApi.getTopRatedMovies(getString(R.string.api_key))
-        loadingData()
-        call.enqueue(object : Callback<MoviesResult> {
-            override fun onFailure(call: Call<MoviesResult>, t: Throwable) {
-                showMessageError()
-            }
-
-            override fun onResponse(call: Call<MoviesResult>, response: Response<MoviesResult>) {
-                val statusCode: Int? = response.code()
-                if (response.isSuccessful && statusCode == 200) {
-                    val results: MoviesResult? = response.body()
-                    Timber.d("Results: %s", results.toString())
-                    val movies: List<Movies> = results!!.movies!!
-                    Timber.d("Movies: %s", movies.toString())
-                    moviesAdapter = MoviesAdapter(context, movies)
-                    showResults()
+        Timber.d("$TAG starts service")
+        uiScope.launch {
+            val mApi = MoviesRemoteAPI.create()
+            val call = mApi.getTopRatedMovies(getString(R.string.api_key))
+            loadingData()
+            call.enqueue(object : Callback<MoviesResult> {
+                override fun onFailure(call: Call<MoviesResult>, t: Throwable) {
+                    showMessageError()
                 }
-            }
 
-        })
+                override fun onResponse(call: Call<MoviesResult>, response: Response<MoviesResult>) {
+                    val statusCode: Int? = response.code()
+                    if (response.isSuccessful && statusCode == 200) {
+                        val results: MoviesResult? = response.body()
+                        Timber.d("$TAG results: %s", results.toString())
+                        val movies: List<Movies>? = results?.movies
+                        Timber.d("Movies: %s", movies.toString())
+                        if (movies != null)
+                            moviesAdapter = MoviesAdapter(context, movies)
+                        rv_movies.setHasFixedSize(true)
+                        rv_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                        rv_movies.adapter = moviesAdapter
+                        showResults()
+                    }
+                }
+            })
+        }
     }
 }

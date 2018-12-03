@@ -69,7 +69,7 @@ class TrendingFragment : Fragment() {
     }
 
     private fun getMovies() {
-        Timber.d("$TAG start service")
+        Timber.d("$TAG starts service")
         uiScope.launch {
             val apiService = MoviesRemoteAPI.create()
             val call = apiService.getTrendingPerWeek(getString(R.string.api_key))
@@ -87,19 +87,17 @@ class TrendingFragment : Fragment() {
                     if (response.isSuccessful && statusCode == 200) {
                         val results: MoviesResult? = response.body()
                         Timber.d("Results: %s", results.toString())
-                        val movies: List<Movies> = results!!.movies!!
+                        val movies: List<Movies>? = results?.movies
+                        if (movies != null)
+                            moviesAdapter = MoviesAdapter(context, movies)
                         Timber.d("Movies: %s", movies.toString())
-                        moviesAdapter = MoviesAdapter(context, movies)
-                        Timber.d("$TAG has an adapter: ${moviesAdapter!!.getMovies()}")
                         rv_movies.setHasFixedSize(true)
                         rv_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         rv_movies.adapter = moviesAdapter
                         showResults()
                     }
                 }
-
             })
         }
-
     }
 }
