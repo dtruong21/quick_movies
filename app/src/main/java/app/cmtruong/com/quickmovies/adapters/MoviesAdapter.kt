@@ -65,7 +65,6 @@ class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private fun ImageView.loadImage(url: String){
         Picasso.get().load(url)
-                .fit()
                 .error(R.drawable.ic_launcher_background)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(this)
