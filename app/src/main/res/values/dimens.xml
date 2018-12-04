@@ -3,9 +3,11 @@
     <dimen name="app_bar_layout_elevation">4dp</dimen>
     <dimen name="collapse_expandedTitle_end">64dp</dimen>
     <dimen name="collapse_tb_expandedTitle_start">48dp</dimen>
-    <dimen name="padding_rv_movies">4dp</dimen>
+    <dimen name="padding_rv_movies">2dp</dimen>
     <dimen name="poster_layout_margin">2dp</dimen>
-    <dimen name="padding_rl">10dp</dimen>
-    <dimen name="margin_rv">5dp</dimen>
-    <dimen name="margin_title">10dp</dimen>
+    <dimen name="padding_rl">4dp</dimen>
+    <dimen name="margin_rv">2dp</dimen>
+    <dimen name="margin_title">4dp</dimen>
+    <dimen name="container_height">250dp</dimen>
+    <dimen name="container_padding">1dp</dimen>
 </resources>

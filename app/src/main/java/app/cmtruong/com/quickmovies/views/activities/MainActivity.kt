@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.views.fragments.FavoriteFragment
 import app.cmtruong.com.quickmovies.views.fragments.PopularFragment
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
 
         // Setup toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (savedInstanceState == null) {
             populateUI()
@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.top_rate_container, TopRatedFragment.getInstance())
                 .addToBackStack(null)
                 .commit()
+
+        favorite_container.visibility = View.GONE
 /*
             supportFragmentManager
                     .beginTransaction()

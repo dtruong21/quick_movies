@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_main"
     android:layout_width="match_parent"
+    android:background="@android:color/black"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".views.activities.MainActivity">
@@ -55,32 +56,32 @@
             <FrameLayout
                 android:id="@+id/favorite_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:padding="5dp">
+                android:layout_height="@dimen/container_height"
+                android:padding="@dimen/container_padding">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/trending_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:padding="5dp">
+                android:layout_height="@dimen/container_height"
+                android:padding="@dimen/container_padding">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/top_rate_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:padding="5dp">
+                android:layout_height="@dimen/container_height"
+                android:padding="@dimen/container_padding">
 
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/popular_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:padding="5dp">
+                android:layout_height="@dimen/container_height"
+                android:padding="@dimen/container_padding">
 
             </FrameLayout>
         </LinearLayout>

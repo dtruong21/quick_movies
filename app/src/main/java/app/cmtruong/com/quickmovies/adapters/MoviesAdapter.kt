@@ -70,7 +70,7 @@ class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 .into(this)
     }
     fun bind(movie: Movies) {
-        posterMovie.loadImage(POSTER_URL + movie.backdrop_path)
+        posterMovie.loadImage(POSTER_URL + movie.poster_path)
     }
 }
 

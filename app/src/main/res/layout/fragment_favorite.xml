@@ -41,11 +41,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_movies"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_rv"
+                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:clipToPadding="true"
-                android:padding="@dimen/padding_rv_movies">
+                android:clipToPadding="true">
 
             </android.support.v7.widget.RecyclerView>
         </RelativeLayout>
