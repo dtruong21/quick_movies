@@ -20,6 +20,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import android.content.Intent
+import app.cmtruong.com.quickmovies.adapters.MovieItemListener
+import app.cmtruong.com.quickmovies.views.activities.MovieDetailActivity
+
 
 /**
  * @author Davide Truong
@@ -50,24 +54,36 @@ class TrendingFragment : Fragment() {
         getMovies()
     }
 
+    /**
+     * Display message error when streaming data is failed
+     */
     private fun showMessageError() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.VISIBLE
         rv_movies.visibility = View.GONE
     }
 
+    /**
+     * Display the movie list when streaming data is done
+     */
     private fun showResults() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.VISIBLE
     }
 
+    /**
+     * Display progress bar to show the loading process
+     */
     private fun loadingData() {
         pb_movie.visibility = View.VISIBLE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.GONE
     }
 
+    /**
+     * Get movies data from remote API
+     */
     private fun getMovies() {
         Timber.d("$TAG starts service")
         uiScope.launch {
@@ -95,9 +111,26 @@ class TrendingFragment : Fragment() {
                         rv_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         rv_movies.adapter = moviesAdapter
                         showResults()
+                        moviesAdapter?.let { showDetailMovieItem(it, ArrayList(movies)) }
                     }
                 }
             })
         }
+    }
+
+    /**
+     * Parse data to next activity
+     */
+    private fun showDetailMovieItem(adapter: MoviesAdapter, movies: ArrayList<Movies>) {
+        adapter.setMovieItemClickedListener(object : MovieItemListener {
+            override fun onMovieItemClicked(view: View, position: Int) {
+                val intent = Intent(activity, MovieDetailActivity::class.java)
+                lateinit var bundle: Bundle
+                bundle.putInt("MOVIE_POSITION", position)
+                bundle.putParcelableArrayList("MOVIE_LIST", movies)
+                intent.putExtras(bundle)
+                context?.let { startActivity(intent) }
+            }
+        })
     }
 }

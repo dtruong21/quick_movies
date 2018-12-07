@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function which populates the main screen
+     */
     private fun populateUI(){
         supportFragmentManager
                 .beginTransaction()
