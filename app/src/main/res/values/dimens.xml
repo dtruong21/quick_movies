@@ -10,4 +10,5 @@
     <dimen name="margin_title">4dp</dimen>
     <dimen name="container_height">250dp</dimen>
     <dimen name="container_padding">1dp</dimen>
+    <dimen name="movie_titem_padding">3dp</dimen>
 </resources>

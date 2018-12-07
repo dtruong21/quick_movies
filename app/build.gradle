@@ -24,7 +24,6 @@ android {
         multiDexEnabled true
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -32,10 +31,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.config
         }
         debug {
-            signingConfig signingConfigs.config
         }
     }
     task installRelease(group: 'install', dependsOn: 'installFreeRelease') {
@@ -59,7 +56,6 @@ android {
             dimension 'version'
             applicationIdSuffix '.free'
             minSdkVersion 23
-            signingConfig signingConfigs.config
         }
         paid {
             dimension 'version'
