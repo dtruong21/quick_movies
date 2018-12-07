@@ -21,6 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import android.content.Intent
+import android.support.v7.widget.RecyclerView
 import app.cmtruong.com.quickmovies.adapters.MovieItemListener
 import app.cmtruong.com.quickmovies.views.activities.MovieDetailActivity
 
@@ -64,7 +65,7 @@ class TrendingFragment : Fragment() {
     }
 
     /**
-     * Display the movie list when streaming data is done
+     * Display the recycler view when streaming data is done
      */
     private fun showResults() {
         pb_movie.visibility = View.GONE
@@ -89,7 +90,6 @@ class TrendingFragment : Fragment() {
         uiScope.launch {
             val apiService = MoviesRemoteAPI.create()
             val call = apiService.getTrendingPerWeek(getString(R.string.api_key))
-            Timber.d("$TAG start request API")
             loadingData()
             call.enqueue(object : Callback<MoviesResult> {
                 override fun onFailure(call: Call<MoviesResult>, t: Throwable) {
@@ -99,23 +99,28 @@ class TrendingFragment : Fragment() {
 
                 override fun onResponse(call: Call<MoviesResult>, response: Response<MoviesResult>) {
                     val statusCode = response.code()
-                    Timber.d("$TAG success $statusCode")
                     if (response.isSuccessful && statusCode == 200) {
+                        Timber.d("$TAG Request OK with return code: $statusCode")
                         val results: MoviesResult? = response.body()
-                        Timber.d("Results: %s", results.toString())
                         val movies: List<Movies>? = results?.movies
                         if (movies != null)
                             moviesAdapter = MoviesAdapter(context, movies)
-                        Timber.d("Movies: %s", movies.toString())
-                        rv_movies.setHasFixedSize(true)
-                        rv_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                        rv_movies.adapter = moviesAdapter
-                        showResults()
+                        rv_movies.setupData()
                         moviesAdapter?.let { showDetailMovieItem(it, ArrayList(movies)) }
                     }
                 }
             })
         }
+    }
+
+    /**
+     * Extension function to display the movie list
+     */
+    private fun RecyclerView.setupData(){
+        this.setHasFixedSize(true)
+        this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        this.adapter = moviesAdapter
+        showResults()
     }
 
     /**
@@ -126,10 +131,11 @@ class TrendingFragment : Fragment() {
             override fun onMovieItemClicked(view: View, position: Int) {
                 val intent = Intent(activity, MovieDetailActivity::class.java)
                 lateinit var bundle: Bundle
-                bundle.putInt("MOVIE_POSITION", position)
-                bundle.putParcelableArrayList("MOVIE_LIST", movies)
+                bundle.putInt(getString(R.string.movie_position), position)
+                bundle.putParcelableArrayList(getString(R.string.movie_list), movies)
                 intent.putExtras(bundle)
                 context?.let { startActivity(intent) }
+                Timber.d("Start parsing data from the position $position to detail activity")
             }
         })
     }

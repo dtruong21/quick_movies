@@ -12,4 +12,6 @@
     <string name="popular_movies">Popular movies</string>
     <string name="top_rated_movies">Top rated movies</string>
     <string name="your_favorites">Your favorites</string>
+    <string name="movie_position">MOVIE_POSITION</string>
+    <string name="movie_list">MOVIE_LIST</string>
 </resources>
