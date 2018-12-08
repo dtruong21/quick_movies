@@ -35,6 +35,9 @@ class TopRatedFragment : Fragment() {
         private val viewModelJob = Job()
         private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+        /**
+         * get new Instance of Top rated Fragment
+         */
         fun getInstance(): TopRatedFragment = TopRatedFragment()
     }
 

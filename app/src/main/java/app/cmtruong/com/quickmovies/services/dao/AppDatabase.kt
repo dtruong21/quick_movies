@@ -32,6 +32,9 @@ abstract class AppDatabase : RoomDatabase() {
         @JvmStatic
         val LOCK: Any = Object()
 
+        /**
+         * get new instance of Room Database
+         */
         fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
                 Timber.d("Database instance is not null")
@@ -44,6 +47,9 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE
         }
 
+        /**
+         * delete the database whenever required
+         */
         fun destroyDatabase() {
             INSTANCE = null
         }

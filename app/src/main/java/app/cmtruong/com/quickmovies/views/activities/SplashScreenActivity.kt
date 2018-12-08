@@ -30,9 +30,6 @@ class SplashScreenActivity : AppCompatActivity() {
         startMainScreen()
     }
 
-    /**
-     * Function which start main activity after splash screen
-     */
     private fun startMainScreen() {
         Handler().postDelayed({
             val intent: Intent? = Intent(this, MainActivity::class.java)

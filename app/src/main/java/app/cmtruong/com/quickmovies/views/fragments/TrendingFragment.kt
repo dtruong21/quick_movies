@@ -39,6 +39,9 @@ class TrendingFragment : Fragment() {
         private val viewModelJob = Job()
         private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+        /**
+         * Get new Instance of Trending Fragment
+         */
         fun getInstance(): TrendingFragment = TrendingFragment()
     }
 
@@ -55,36 +58,24 @@ class TrendingFragment : Fragment() {
         getMovies()
     }
 
-    /**
-     * Display message error when streaming data is failed
-     */
     private fun showMessageError() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.VISIBLE
         rv_movies.visibility = View.GONE
     }
 
-    /**
-     * Display the recycler view when streaming data is done
-     */
     private fun showResults() {
         pb_movie.visibility = View.GONE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.VISIBLE
     }
 
-    /**
-     * Display progress bar to show the loading process
-     */
     private fun loadingData() {
         pb_movie.visibility = View.VISIBLE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.GONE
     }
 
-    /**
-     * Get movies data from remote API
-     */
     private fun getMovies() {
         Timber.d("$TAG starts service")
         uiScope.launch {
@@ -113,9 +104,6 @@ class TrendingFragment : Fragment() {
         }
     }
 
-    /**
-     * Extension function to display the movie list
-     */
     private fun RecyclerView.setupData(){
         this.setHasFixedSize(true)
         this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -123,9 +111,6 @@ class TrendingFragment : Fragment() {
         showResults()
     }
 
-    /**
-     * Parse data to next activity
-     */
     private fun showDetailMovieItem(adapter: MoviesAdapter, movies: ArrayList<Movies>) {
         adapter.setMovieItemClickedListener(object : MovieItemListener {
             override fun onMovieItemClicked(view: View, position: Int) {

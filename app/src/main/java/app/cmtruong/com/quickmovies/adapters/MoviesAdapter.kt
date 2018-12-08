@@ -75,9 +75,6 @@ class MoviesAdapter(private val context: Context?, private val movies: List<Movi
             private val POSTER_URL = "http://image.tmdb.org/t/p/w185"
         }
 
-        /**
-         * Loading the image view in view holder
-         */
         private fun ImageView.loadImage(url: String) {
             Picasso.get().load(url)
                     .error(R.drawable.ic_launcher_background)
@@ -103,6 +100,10 @@ class MoviesAdapter(private val context: Context?, private val movies: List<Movi
  * Interface which handles click event
  */
 interface MovieItemListener {
+
+    /**
+     * function which
+     */
     fun onMovieItemClicked(view: View, position: Int)
 }
 

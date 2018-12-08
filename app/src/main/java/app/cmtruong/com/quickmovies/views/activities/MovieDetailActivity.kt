@@ -15,8 +15,6 @@ class MovieDetailActivity : AppCompatActivity() {
     companion object {
         @JvmStatic
         val TAG = MovieDetailActivity::class.java.canonicalName as String
-
-        fun getInstance(): MovieDetailActivity = MovieDetailActivity()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

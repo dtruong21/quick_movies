@@ -1,7 +1,5 @@
 package app.cmtruong.com.quickmovies.models
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 

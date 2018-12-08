@@ -10,11 +10,17 @@ import java.util.*
  */
 class DateTypeConverter {
 
+    /**
+     * convert the data from Timestamps to date value
+     */
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
         return if (value == null) null else Date(value)
     }
 
+    /**
+     * convert the data from date type to timestamp
+     */
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? {
         return date?.time
