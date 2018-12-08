@@ -1,5 +1,6 @@
 # QuickMovies
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/10172452d1694d27866de9a78042ca19)](https://app.codacy.com/app/cminh.truong/quick_movies?utm_source=github.com&utm_medium=referral&utm_content=cminhtruong/quick_movies&utm_campaign=Badge_Grade_Dashboard)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 QuickMovies is a simple solution for everybody to checkout movies information before making decisions. This app is my first Android application which is written in Kotlin. So enjoy!
