@@ -1,11 +1,17 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.cmtruong.com.quickmovies.R
+import app.cmtruong.com.quickmovies.adapters.MoviesAdapter
+import app.cmtruong.com.quickmovies.models.Movies
+import app.cmtruong.com.quickmovies.views.activities.MovieDetailActivity
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import timber.log.Timber
 
@@ -44,5 +50,18 @@ class FavoriteFragment: Fragment() {
         pb_movie.visibility = View.VISIBLE
         movie_error.visibility = View.GONE
         rv_movies.visibility = View.GONE
+    }
+
+    private fun RecyclerView.setupData(movies: List<Movies>) {
+        this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        this.setHasFixedSize(true)
+        this.adapter = MoviesAdapter(movies){
+            val intent = Intent(activity, MovieDetailActivity::class.java).apply {
+                putExtra(getString(R.string.movie_list), ArrayList(movies))
+                putExtra(getString(R.string.movie_position), movies.indexOf(it))
+            }
+            startActivity(intent)
+        }
+        showResults()
     }
 }

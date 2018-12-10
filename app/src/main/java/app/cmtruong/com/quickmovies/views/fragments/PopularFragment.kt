@@ -1,8 +1,10 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import app.cmtruong.com.quickmovies.adapters.MoviesAdapter
 import app.cmtruong.com.quickmovies.models.Movies
 import app.cmtruong.com.quickmovies.models.MoviesResult
 import app.cmtruong.com.quickmovies.services.remote.MoviesRemoteAPI
+import app.cmtruong.com.quickmovies.views.activities.MovieDetailActivity
 import kotlinx.android.synthetic.main.fragment_popular.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -85,11 +88,7 @@ class PopularFragment : Fragment() {
                         val result: MoviesResult? = response.body()
                         val movies: List<Movies>? = result?.movies
                         if (movies != null)
-                            moviesAdapter = MoviesAdapter(context, movies)
-                        rv_movies.setHasFixedSize(true)
-                        rv_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                        rv_movies.adapter = moviesAdapter
-                        showResults()
+                            rv_movies.setupData(movies)
                     }
                 }
 
@@ -99,5 +98,17 @@ class PopularFragment : Fragment() {
                 }
             })
         }
+    }
+    private fun RecyclerView.setupData(movies: List<Movies>) {
+        this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        this.setHasFixedSize(true)
+        this.adapter = MoviesAdapter(movies){
+            val intent = Intent(activity, MovieDetailActivity::class.java).apply {
+                putExtra(getString(R.string.movie_list), ArrayList(movies))
+                putExtra(getString(R.string.movie_position), movies.indexOf(it))
+            }
+            startActivity(intent)
+        }
+        showResults()
     }
 }
