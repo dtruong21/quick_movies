@@ -17,6 +17,8 @@ class MovieDetailActivity : AppCompatActivity() {
     companion object {
         @JvmStatic
         val TAG = MovieDetailActivity::class.java.canonicalName as String
+
+        private const val DEFAULT_POSITION: Int = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +26,8 @@ class MovieDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_detail)
         Timber.d("$TAG is created.")
 
-        val intent: Intent? = this.intent
-        val bundle: Bundle? = intent!!.extras
-
-        val position: Int? = bundle?.getInt(getString(R.string.movie_position))
-        val movies: ArrayList<Movies>? = bundle?.getParcelableArrayList<Movies>(getString(R.string.movie_list))
-        Timber.d("The position $position from the list of ${movies.toString()}")
+        val position: Int = intent.getIntExtra(getString(R.string.movie_position), DEFAULT_POSITION)
+        val movies: ArrayList<Movies> = intent.getParcelableArrayListExtra(getString(R.string.movie_list))
+        Timber.d("The position $position from the list of %s", movies.toString())
     }
 }

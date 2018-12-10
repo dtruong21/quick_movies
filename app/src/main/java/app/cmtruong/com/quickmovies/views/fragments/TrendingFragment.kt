@@ -114,11 +114,10 @@ class TrendingFragment : Fragment() {
     private fun showDetailMovieItem(adapter: MoviesAdapter, movies: ArrayList<Movies>) {
         adapter.setMovieItemClickedListener(object : MovieItemListener {
             override fun onMovieItemClicked(view: View, position: Int) {
-                val intent = Intent(activity, MovieDetailActivity::class.java)
-                lateinit var bundle: Bundle
-                bundle.putInt(getString(R.string.movie_position), position)
-                bundle.putParcelableArrayList(getString(R.string.movie_list), movies)
-                intent.putExtras(bundle)
+                val intent = Intent(activity, MovieDetailActivity::class.java).apply {
+                    putExtra(getString(R.string.movie_position), position)
+                    putExtra(getString(R.string.movie_list), movies)
+                }
                 context?.let { startActivity(intent) }
                 Timber.d("Start parsing data from the position $position to detail activity")
             }
