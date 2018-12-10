@@ -1,8 +1,10 @@
 package app.cmtruong.com.quickmovies.views.activities
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import app.cmtruong.com.quickmovies.R
+import app.cmtruong.com.quickmovies.models.Movies
 import timber.log.Timber
 
 /**
@@ -20,7 +22,13 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
-        Timber.tag(TAG)
         Timber.d("$TAG is created.")
+
+        val intent: Intent? = this.intent
+        val bundle: Bundle? = intent!!.extras
+
+        val position: Int? = bundle?.getInt(getString(R.string.movie_position))
+        val movies: ArrayList<Movies>? = bundle?.getParcelableArrayList<Movies>(getString(R.string.movie_list))
+        Timber.d("The position $position from the list of ${movies.toString()}")
     }
 }
