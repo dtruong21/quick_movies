@@ -8,7 +8,8 @@
     <dimen name="padding_rl">4dp</dimen>
     <dimen name="margin_rv">2dp</dimen>
     <dimen name="margin_title">4dp</dimen>
-    <dimen name="container_height">250dp</dimen>
+    <dimen name="container_height">200dp</dimen>
     <dimen name="container_padding">1dp</dimen>
-    <dimen name="movie_titem_padding">3dp</dimen>
+    <dimen name="movie_item_padding">3dp</dimen>
+    <dimen name="padding_view_pager">4dp</dimen>
 </resources>

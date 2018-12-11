@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.cmtruong.com.quickmovies.R
+import app.cmtruong.com.quickmovies.models.Movies
 import timber.log.Timber
 
 /**
@@ -17,12 +18,21 @@ class DetailMovieFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        val TAG = DetailMovieFragment::class.java.canonicalName as String
+        private val TAG = DetailMovieFragment::class.java.canonicalName as String
 
+        private const val MOVIE_POSITION = "MOVIE_POSITION"
+        private const val MOVIE_LIST = "MOVIE_LIST"
         /**
          * get new instance of detail movie fragment
          */
-        fun getInstance(): DetailMovieFragment = DetailMovieFragment()
+        fun getInstance(position: Int, movies: ArrayList<Movies>): DetailMovieFragment{
+            val args = Bundle()
+            args.putInt(MOVIE_POSITION, position)
+            args.putParcelableArrayList(MOVIE_LIST, movies)
+            val mFragment = DetailMovieFragment()
+            mFragment.arguments = args
+            return mFragment
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,4 +44,5 @@ class DetailMovieFragment : Fragment() {
         Timber.d("$TAG is started")
         super.onViewCreated(view, savedInstanceState)
     }
+
 }
