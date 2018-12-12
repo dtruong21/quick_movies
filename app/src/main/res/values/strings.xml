@@ -14,4 +14,5 @@
     <string name="your_favorites">Your favorites</string>
     <string name="movie_position">MOVIE_POSITION</string>
     <string name="movie_list">MOVIE_LIST</string>
+    <string name="backdrop">backdrop</string>
 </resources>
