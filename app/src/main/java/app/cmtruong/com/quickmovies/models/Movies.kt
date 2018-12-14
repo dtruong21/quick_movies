@@ -15,19 +15,29 @@ import kotlinx.android.parcel.Parcelize
  */
 @Entity(tableName = "movies")
 @Parcelize
-data class Movies constructor(@PrimaryKey var id: Int?,
+data class Movies constructor(@PrimaryKey var id: Int,
                               var poster_path: String,
                               var overview: String,
                               var release_date: String,
                               var original_title: String,
                               var original_language: String,
                               var title: String,
+                              var genres: List<Genres>,
                               var vote_average: Double,
+                              var vote_count: Int,
+                              var popularity: Int,
+                              var budget: Int,
+                              var revenue: Int,
+                              var status: String,
                               var backdrop_path: String) : Parcelable
 
 class MoviesResult constructor(var page: Int,
                                @SerializedName("results") var movies: List<Movies>? = null,
                                var total_page: Int,
                                var total_results: Int)
+
+@Parcelize
+class Genres constructor(var id: Int,
+                         var name: String): Parcelable
 
 

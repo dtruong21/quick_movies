@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main_toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="256dp"
         android:background="@android:color/transparent"
         android:elevation="@dimen/app_bar_layout_elevation"
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
@@ -32,7 +33,8 @@
                     android:contentDescription="@string/backdrop"
                     android:fitsSystemWindows="true"
                     android:maxHeight="@dimen/max_height_backdrop"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_background" />
             </FrameLayout>
 
             <android.support.v7.widget.Toolbar
@@ -53,5 +55,49 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <FrameLayout
+            android:id="@+id/detail_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/detail_poster"
+                android:layout_width="@dimen/poster_width_detail"
+                android:layout_height="@dimen/poster_height_detail"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/margin_poster_detail"
+                android:contentDescription="@string/poster_url"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_info_margin"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/movie_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Name: Venom" />
+                <TextView
+                    android:id="@+id/movie_detail_release"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Release date: January 3, 2018" />
+                <TextView
+                    android:id="@+id/movie_detail_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Vote average: 6.5" />
+                <TextView
+                    android:id="@+id/movie_detail_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Language: EN" />
+            </LinearLayout>
+        </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

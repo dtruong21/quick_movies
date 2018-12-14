@@ -13,4 +13,8 @@
     <dimen name="movie_item_padding">3dp</dimen>
     <dimen name="padding_view_pager">4dp</dimen>
     <dimen name="max_height_backdrop">256dp</dimen>
+    <dimen name="margin_poster_detail">10dp</dimen>
+    <dimen name="poster_width_detail">120dp</dimen>
+    <dimen name="poster_height_detail">150dp</dimen>
+    <dimen name="detail_info_margin">10dp</dimen>
 </resources>

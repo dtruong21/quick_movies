@@ -15,4 +15,5 @@
     <string name="movie_position">MOVIE_POSITION</string>
     <string name="movie_list">MOVIE_LIST</string>
     <string name="backdrop">backdrop</string>
+    <string name="name">Name:</string>
 </resources>
