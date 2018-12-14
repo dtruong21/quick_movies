@@ -112,4 +112,9 @@ class TopRatedFragment : Fragment() {
         }
         showResults()
     }
+
+    override fun onStop() {
+        super.onStop()
+        viewModelJob.cancel()
+    }
 }

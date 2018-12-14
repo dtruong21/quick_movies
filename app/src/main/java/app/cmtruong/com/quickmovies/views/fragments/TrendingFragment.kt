@@ -74,6 +74,7 @@ class TrendingFragment : Fragment() {
         rv_movies.visibility = View.GONE
     }
 
+
     private fun getMovies() {
         Timber.d("$TAG starts service")
         uiScope.launch {
@@ -112,5 +113,10 @@ class TrendingFragment : Fragment() {
             startActivity(intent)
         }
         showResults()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModelJob.cancel()
     }
 }
