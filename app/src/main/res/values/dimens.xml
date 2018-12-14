@@ -19,4 +19,5 @@
     <dimen name="detail_info_margin">10dp</dimen>
     <dimen name="padding_review_rv">15dp</dimen>
     <dimen name="padding_overview_text">10dp</dimen>
+    <dimen name="margin_poster">25dp</dimen>
 </resources>

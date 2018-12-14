@@ -69,8 +69,8 @@
                     android:id="@+id/detail_poster"
                     android:layout_width="@dimen/poster_width_detail"
                     android:layout_height="@dimen/poster_height_detail"
-                    android:layout_gravity="end"
-                    android:layout_margin="@dimen/margin_poster_detail"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/margin_poster"
                     android:contentDescription="@string/poster_url"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/ic_launcher_foreground" />
@@ -80,13 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="@dimen/detail_info_margin"
+                    android:padding="5dp"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/movie_detail_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Name: Venom" />
 
                     <TextView
                         android:id="@+id/movie_detail_genres"
@@ -119,21 +114,32 @@
                         tools:text="Release date: January 3, 2018" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="3">
 
                         <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            style="@android:style/Widget.Material.Button.Borderless.Small"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:text="share" />
 
                         <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            style="@android:style/Widget.Material.Button.Borderless.Small"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            tools:text="share" />
 
                         <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            style="@android:style/Widget.Material.Button.Borderless.Small"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:text="share" />
 
                     </LinearLayout>
                 </LinearLayout>
