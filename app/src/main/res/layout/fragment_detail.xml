@@ -8,7 +8,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main_toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
+        android:layout_height="192dp"
         android:background="@android:color/transparent"
         android:elevation="@dimen/app_bar_layout_elevation"
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
@@ -55,49 +55,119 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
-            android:id="@+id/detail_frame"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/detail_poster"
-                android:layout_width="@dimen/poster_width_detail"
-                android:layout_height="@dimen/poster_height_detail"
-                android:layout_gravity="end"
-                android:layout_margin="@dimen/margin_poster_detail"
-                android:contentDescription="@string/poster_url"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/ic_launcher_foreground" />
+            <FrameLayout
+                android:id="@+id/detail_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/detail_poster"
+                    android:layout_width="@dimen/poster_width_detail"
+                    android:layout_height="@dimen/poster_height_detail"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/margin_poster_detail"
+                    android:contentDescription="@string/poster_url"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_foreground" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/detail_info_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/movie_detail_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Name: Venom" />
+
+                    <TextView
+                        android:id="@+id/movie_detail_genres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Genres: drama" />
+
+                    <TextView
+                        android:id="@+id/movie_detail_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Vote average: 6.5" />
+
+                    <TextView
+                        android:id="@+id/movie_detail_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Language: en" />
+
+                    <TextView
+                        android:id="@+id/movie_detail_budget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Budget: $1600000" />
+
+                    <TextView
+                        android:id="@+id/movie_detail_release"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Release date: January 3, 2018" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/movie_detail_overview_frame"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_info_margin"
-                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/movie_detail_title"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/movie_detail_overview"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Name: Venom" />
-                <TextView
-                    android:id="@+id/movie_detail_release"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Release date: January 3, 2018" />
-                <TextView
-                    android:id="@+id/movie_detail_rate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Vote average: 6.5" />
-                <TextView
-                    android:id="@+id/movie_detail_language"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Language: EN" />
+                    android:padding="@dimen/padding_overview_text"
+                    tools:text="@string/overview_test" />
             </LinearLayout>
-        </FrameLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/movie_reviews_rv"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:padding="@dimen/padding_review_rv">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/movie_trailer_rv"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:padding="@dimen/padding_review_rv">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

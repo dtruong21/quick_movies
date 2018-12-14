@@ -17,4 +17,6 @@
     <dimen name="poster_width_detail">120dp</dimen>
     <dimen name="poster_height_detail">150dp</dimen>
     <dimen name="detail_info_margin">10dp</dimen>
+    <dimen name="padding_review_rv">15dp</dimen>
+    <dimen name="padding_overview_text">10dp</dimen>
 </resources>
