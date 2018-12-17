@@ -91,4 +91,6 @@ class DetailMovieFragment : Fragment() {
                 .into(this)
     }
 
+
+
 }

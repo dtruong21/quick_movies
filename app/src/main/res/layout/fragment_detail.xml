@@ -80,8 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="@dimen/detail_info_margin"
-                    android:padding="5dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/movie_detail_genres"
@@ -120,21 +120,23 @@
                         android:weightSum="3">
 
                         <Button
+                            android:id="@+id/add_button"
                             style="@android:style/Widget.Material.Button.Borderless.Small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:text="share" />
+                            tools:text="add" />
 
                         <Button
+                            android:id="@+id/review_button"
                             style="@android:style/Widget.Material.Button.Borderless.Small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-
                             android:layout_weight="1"
-                            tools:text="share" />
+                            tools:text="review" />
 
                         <Button
+                            android:id="@+id/share_button"
                             style="@android:style/Widget.Material.Button.Borderless.Small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
