@@ -119,29 +119,31 @@
                         android:orientation="horizontal"
                         android:weightSum="3">
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/add_button"
                             style="@android:style/Widget.Material.Button.Borderless.Small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:text="add" />
+                            tools:src="@drawable/ic_add_box_white_24dp" />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/review_button"
                             style="@android:style/Widget.Material.Button.Borderless.Small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/review"
                             android:layout_weight="1"
-                            tools:text="review" />
+                            tools:src="@drawable/ic_rate_review_white_24dp" />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/share_button"
                             style="@android:style/Widget.Material.Button.Borderless.Small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:text="share" />
+                            tools:src="@drawable/ic_share_white_24dp"
+                            android:contentDescription="@string/share" />
 
                     </LinearLayout>
                 </LinearLayout>
