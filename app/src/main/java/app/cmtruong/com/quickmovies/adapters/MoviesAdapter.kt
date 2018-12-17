@@ -1,6 +1,5 @@
 package app.cmtruong.com.quickmovies.adapters
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -19,25 +18,13 @@ import timber.log.Timber
  */
 class MoviesAdapter(private val movies: List<Movies>, private val listener: (Movies) -> Unit) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
-    companion object {
-        @JvmStatic
-        val TAG = MoviesAdapter::class.java.simpleName as String
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view: View = inflater.inflate(R.layout.movies_item, parent, false)
-        Timber.tag(TAG)
-        Timber.d("Adapter created")
         return MoviesViewHolder(view)
     }
 
-    /**
-     * Return movie list size
-     */
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount(): Int = movies.size
 
 
     /**
@@ -51,14 +38,12 @@ class MoviesAdapter(private val movies: List<Movies>, private val listener: (Mov
     }
 
     /**
-     *
      * Movie ViewHolder class
      * @author Davide Truong
      * @since October 26th, 2018
      * @version 1.0
      */
     class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
 
         private val posterMovie: ImageView = view.poster_movie
 
