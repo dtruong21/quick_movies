@@ -22,13 +22,11 @@ data class Movies constructor(@PrimaryKey var id: Int,
                               var original_title: String,
                               var original_language: String,
                               var title: String,
-                              var genres: List<Genres>,
                               var vote_average: Double,
                               var vote_count: Int,
                               var popularity: Int,
                               var budget: Int,
                               var revenue: Int,
-                              var status: String,
                               var backdrop_path: String) : Parcelable
 
 class MoviesResult constructor(var page: Int,
@@ -36,8 +34,5 @@ class MoviesResult constructor(var page: Int,
                                var total_page: Int,
                                var total_results: Int)
 
-@Parcelize
-class Genres constructor(var id: Int,
-                         var name: String): Parcelable
 
 
