@@ -1,7 +1,6 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
 import android.os.Bundle
-import android.support.annotation.UiThread
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -9,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import app.cmtruong.com.quickmovies.R
-import app.cmtruong.com.quickmovies.models.Genres
 import app.cmtruong.com.quickmovies.models.Movies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
 /**
@@ -71,12 +70,7 @@ class DetailMovieFragment : Fragment() {
             title = movie.title
             photo.loadImage(POSTER_URL + movie.backdrop_path)
         }
-        val genres: List<Genres> = movie.genres
-        val sb = StringBuilder()
-        for (genre in genres) {
-            sb.append("${genre.name}, ")
-        }
-        movie_detail_genres.text = sb.toString()
+
         movie_detail_language.text = movie.original_language
         movie_detail_budget.text = movie.budget.toString()
         movie_detail_rate.text = movie.vote_average.toString()
@@ -90,7 +84,6 @@ class DetailMovieFragment : Fragment() {
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(this)
     }
-
 
 
 }
