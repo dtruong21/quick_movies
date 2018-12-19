@@ -1,5 +1,6 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -79,6 +80,30 @@ class DetailMovieFragment : Fragment() {
         movie_detail_rate.text = movie.vote_average.toString()
         movie_detail_overview.text = movie.overview
         detail_poster.loadImage(POSTER_URL + movie.poster_path)
+
+        add_button.apply {
+            setOnClickListener {
+                Timber.d("$it is clicked")
+            }
+        }
+
+        review_button.apply {
+            setOnClickListener {
+                Timber.d("$it is clicked")
+            }
+        }
+
+        share_button.apply {
+            setOnClickListener {
+                val intent = Intent(Intent.ACTION_MEDIA_SHARED).apply {
+                    type = context.getString(R.string.type_share)
+                    putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name))
+                            .putExtra(Intent.EXTRA_REFERRER_NAME, movie.original_title)
+                            .putExtra(Intent.EXTRA_TEXT, "${movie.title} with rate ${movie.vote_average}")
+                }
+                startActivity(Intent.createChooser(intent, "Share ${movie.original_title}"))
+            }
+        }
     }
 
     private fun ImageView.loadImage(url: String) {

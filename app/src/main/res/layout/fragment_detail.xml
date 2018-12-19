@@ -32,8 +32,8 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/backdrop"
                     android:fitsSystemWindows="true"
-                    android:maxHeight="@dimen/max_height_backdrop"
                     android:scaleType="centerCrop"
+                    android:maxHeight="@dimen/max_height_backdrop"
                     tools:src="@drawable/ic_launcher_background" />
             </FrameLayout>
 
@@ -82,13 +82,6 @@
                     android:layout_margin="@dimen/detail_info_margin"
                     android:orientation="vertical"
                     android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/movie_detail_genres"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Genres: drama" />
-
                     <TextView
                         android:id="@+id/movie_detail_rate"
                         android:layout_width="wrap_content"
@@ -125,7 +118,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:src="@drawable/ic_add_box_white_24dp"
+                            android:src="@drawable/ic_add_box_white_24dp"
                             android:contentDescription="@string/add" />
 
                         <ImageButton
@@ -135,7 +128,7 @@
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/review"
                             android:layout_weight="1"
-                            tools:src="@drawable/ic_rate_review_white_24dp" />
+                            android:src="@drawable/ic_rate_review_white_24dp" />
 
                         <ImageButton
                             android:id="@+id/share_button"
@@ -143,7 +136,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:src="@drawable/ic_share_white_24dp"
+                            android:src="@drawable/ic_share_white_24dp"
                             android:contentDescription="@string/share" />
 
                     </LinearLayout>
