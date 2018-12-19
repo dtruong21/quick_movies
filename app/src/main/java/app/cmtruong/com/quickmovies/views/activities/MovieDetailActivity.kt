@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.ViewGroup
 import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
 import app.cmtruong.com.quickmovies.views.fragments.DetailMovieFragment
@@ -34,26 +36,31 @@ class MovieDetailActivity : AppCompatActivity() {
         val movies: ArrayList<Movies> = intent.getParcelableArrayListExtra(getString(R.string.movie_list))
 
         val mAdapter = MyMovieViewPager(supportFragmentManager)
-        for(i in 0 until movies.size) mAdapter.addFragments(DetailMovieFragment.getInstance(i, movies))
-        movie_pager.adapter = mAdapter
+        mAdapter.setMovies(movies)
+        movie_pager.apply {
+            adapter = mAdapter
+            currentItem = position
+        }
         Timber.d("The position $position from the list of %s", movies.toString())
     }
 
-    private class MyMovieViewPager(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-        private var fragments = ArrayList<Fragment>()
+    /**
+     * @author cminhtruong
+     * @version 1.0
+     * @since 2018, December 18th
+     */
+    class MyMovieViewPager(manager: FragmentManager) : FragmentPagerAdapter(manager) {
+        private var moviesList: ArrayList<Movies> = ArrayList()
 
-        init {
-            fragments = ArrayList()
+        override fun getItem(position: Int): Fragment {
+            return DetailMovieFragment.getInstance(position, moviesList)
         }
 
-        override fun getItem(position: Int): Fragment = fragments[position]
-
-        override fun getCount(): Int = fragments.size
+        override fun getCount(): Int = moviesList.size
 
         /**
-         * add all fragments from the list to adapter
+         * setup movie list
          */
-        fun addFragments(fragment: Fragment) = fragments.add(fragment)
-
+        fun setMovies(movies: ArrayList<Movies>) = moviesList.addAll(movies)
     }
 }

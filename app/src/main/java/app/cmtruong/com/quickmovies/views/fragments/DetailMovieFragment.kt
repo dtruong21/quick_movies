@@ -11,8 +11,7 @@ import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import timber.log.Timber
 
 /**
@@ -28,6 +27,9 @@ class DetailMovieFragment : Fragment() {
 
         private const val MOVIE_POSITION = "MOVIE_POSITION"
         private const val MOVIE_LIST = "MOVIE_LIST"
+
+        private val viewModelJob = Job()
+        private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
         private const val POSTER_URL = "http://image.tmdb.org/t/p/w185"
         /**
@@ -55,17 +57,18 @@ class DetailMovieFragment : Fragment() {
         Timber.d("$TAG is started")
         if (arguments != null) {
             position = arguments!!.getInt(MOVIE_POSITION)
+            movies = arguments!!.getParcelableArrayList(MOVIE_LIST)
         }
 
-        runBlocking {
-            launch(coroutineContext) { populateUI(movies[position]) }
-        }
+        populateUI(movies[position])
+
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun populateUI(movie: Movies) {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
             setHomeButtonEnabled(true)
             title = movie.title
             photo.loadImage(POSTER_URL + movie.backdrop_path)

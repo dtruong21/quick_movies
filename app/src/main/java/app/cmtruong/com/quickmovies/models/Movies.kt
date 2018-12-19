@@ -24,7 +24,7 @@ data class Movies constructor(@PrimaryKey var id: Int,
                               var title: String,
                               var vote_average: Double,
                               var vote_count: Int,
-                              var popularity: Int,
+                              var popularity: Double,
                               var budget: Int,
                               var revenue: Int,
                               var backdrop_path: String) : Parcelable
