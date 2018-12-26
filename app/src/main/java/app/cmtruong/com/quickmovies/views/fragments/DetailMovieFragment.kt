@@ -12,7 +12,9 @@ import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import timber.log.Timber
 
 /**
@@ -108,6 +110,7 @@ class DetailMovieFragment : Fragment() {
 
     private fun ImageView.loadImage(url: String) {
         Picasso.get().load(url)
+                .fit()
                 .error(R.drawable.ic_launcher_background)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(this)
