@@ -68,15 +68,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/padding_layout_info"
-                android:weightSum="3">
+                android:weightSum="5">
 
                 <ImageView
                     android:id="@+id/detail_poster"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/poster_height_detail"
-                    android:layout_marginStart="@dimen/margin_poster"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/padding_layout_info"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/padding_layout_info"
+                    android:layout_weight="2"
                     android:contentDescription="@string/poster_url"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/ic_launcher_foreground" />
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="@dimen/detail_info_margin"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:orientation="vertical"
                     android:padding="@dimen/padding_layout_info">
 
@@ -94,48 +94,60 @@
                         android:id="@+id/movie_detail_original_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_layout_info"
-                        android:padding="@dimen/padding_tv_info"
                         android:hyphenationFrequency="none"
-                        tools:text="Title: Avenger" />
-
-                    <TextView
-                        android:id="@+id/movie_detail_rate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:padding="@dimen/padding_tv_info"
-                        tools:text="Vote average: 6.5" />
+                        tools:text="Title: Avenger" />
 
                     <TextView
                         android:id="@+id/movie_detail_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_layout_info"
                         android:padding="@dimen/padding_tv_info"
+                        android:layout_marginStart="@dimen/padding_tv_info"
                         tools:text="Language: en" />
 
+
                     <TextView
-                        android:id="@+id/movie_detail_budget"
+                        android:id="@+id/movie_detail_rate_count"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/padding_tv_info"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_tv_info"
+                        tools:text="Vote count: 3000" />
+
+                    <TextView
+                        android:id="@+id/movie_detail_popularity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:padding="@dimen/padding_tv_info"
-                        tools:text="Budget: $1600000" />
+                        tools:text="Popularity: 12.083976" />
+
 
                     <TextView
                         android:id="@+id/movie_detail_release"
                         android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_layout_info"
                         android:padding="@dimen/padding_tv_info"
                         tools:text="Release date: January 3, 2018" />
+
+                    <RatingBar
+                        android:id="@+id/movie_detail_rating_bar"
+                        style="@android:style/Widget.Material.Light.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_tv_info"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:stepSize="0.1"
+                        tools:rating="3" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="@dimen/padding_tv_info"
                         android:weightSum="3">
 
                         <ImageButton

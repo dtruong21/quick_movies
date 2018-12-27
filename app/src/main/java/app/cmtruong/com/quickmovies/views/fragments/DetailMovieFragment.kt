@@ -12,9 +12,6 @@ import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import timber.log.Timber
 
 /**
@@ -73,17 +70,19 @@ class DetailMovieFragment : Fragment() {
         }
 
         val language = "Language: ${movie.original_language}"
-        val budget = "Budget: ${movie.budget}"
-        val rate = "Vote average: ${movie.vote_average}"
+        val voteCount = "Vote count: ${movie.vote_count}"
+        val rate = movie.vote_average / 2
         val release = "Release date: ${movie.release_date}"
         val title = "Title: ${movie.original_title}"
+        val popularity = "Popularity: ${movie.popularity}"
 
+        movie_detail_rate_count.text = voteCount
         movie_detail_original_title.text = title
         movie_detail_language.text = language
-        movie_detail_budget.text = budget
-        movie_detail_rate.text = rate
         movie_detail_overview.text = movie.overview
         movie_detail_release.text = release
+        movie_detail_rating_bar.rating = rate.toFloat()
+        movie_detail_popularity.text = popularity
         detail_poster.loadImage(POSTER_URL + movie.poster_path)
 
         add_button.apply {

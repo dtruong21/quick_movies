@@ -49,7 +49,7 @@ class MoviesAdapter(private val movies: List<Movies>, private val listener: (Mov
 
         companion object {
             @JvmStatic
-            private val POSTER_URL = "http://image.tmdb.org/t/p/w185"
+            private val POSTER_URL = "http://image.tmdb.org/t/p/w500"
         }
 
         private fun ImageView.loadImage(url: String) {
