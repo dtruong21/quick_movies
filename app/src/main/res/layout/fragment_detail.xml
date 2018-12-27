@@ -8,7 +8,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main_toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="@dimen/appbar_height"
         android:background="@android:color/transparent"
         android:elevation="@dimen/app_bar_layout_elevation"
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
@@ -32,8 +32,8 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/backdrop"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
                     android:maxHeight="@dimen/max_height_backdrop"
+                    android:scaleType="centerCrop"
                     tools:src="@drawable/ic_launcher_background" />
             </FrameLayout>
 
@@ -42,7 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:fitsSystemWindows="true"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -60,88 +62,112 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/detail_frame"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_layout_info"
+                android:weightSum="3">
 
                 <ImageView
                     android:id="@+id/detail_poster"
-                    android:layout_width="@dimen/poster_width_detail"
+                    android:layout_width="0dp"
                     android:layout_height="@dimen/poster_height_detail"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="@dimen/margin_poster"
+                    android:layout_marginStart="@dimen/margin_poster"
+                    android:layout_marginTop="@dimen/padding_layout_info"
+                    android:layout_weight="1"
                     android:contentDescription="@string/poster_url"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/ic_launcher_foreground" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="@dimen/detail_info_margin"
+                    android:layout_weight="2"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="@dimen/padding_layout_info">
+
+                    <TextView
+                        android:id="@+id/movie_detail_original_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:padding="@dimen/padding_tv_info"
+                        android:hyphenationFrequency="none"
+                        tools:text="Title: Avenger" />
+
                     <TextView
                         android:id="@+id/movie_detail_rate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:padding="@dimen/padding_tv_info"
                         tools:text="Vote average: 6.5" />
 
                     <TextView
                         android:id="@+id/movie_detail_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:padding="@dimen/padding_tv_info"
                         tools:text="Language: en" />
 
                     <TextView
                         android:id="@+id/movie_detail_budget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:padding="@dimen/padding_tv_info"
                         tools:text="Budget: $1600000" />
 
                     <TextView
                         android:id="@+id/movie_detail_release"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_layout_info"
+                        android:padding="@dimen/padding_tv_info"
                         tools:text="Release date: January 3, 2018" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:padding="@dimen/padding_tv_info"
                         android:weightSum="3">
 
                         <ImageButton
                             android:id="@+id/add_button"
-                            style="@android:style/Widget.Material.Button.Borderless.Small"
+                            style="@android:style/Widget.Material.Button.Borderless"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:src="@drawable/ic_add_box_white_24dp"
-                            android:contentDescription="@string/add" />
+                            android:contentDescription="@string/add"
+                            android:src="@drawable/ic_add_box_white_48dp" />
 
                         <ImageButton
                             android:id="@+id/review_button"
-                            style="@android:style/Widget.Material.Button.Borderless.Small"
+                            style="@android:style/Widget.Material.Button.Borderless"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/review"
                             android:layout_weight="1"
-                            android:src="@drawable/ic_rate_review_white_24dp" />
+                            android:contentDescription="@string/review"
+                            android:src="@drawable/ic_rate_review_white_48dp" />
 
                         <ImageButton
                             android:id="@+id/share_button"
-                            style="@android:style/Widget.Material.Button.Borderless.Small"
+                            style="@android:style/Widget.Material.Button.Borderless"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:src="@drawable/ic_share_white_24dp"
-                            android:contentDescription="@string/share" />
+                            android:contentDescription="@string/share"
+                            android:src="@drawable/ic_share_white_48dp" />
 
                     </LinearLayout>
                 </LinearLayout>
-            </FrameLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/movie_detail_overview_frame"

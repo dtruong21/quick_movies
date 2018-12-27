@@ -4,7 +4,7 @@
     <string name="movie_poster">movie poster</string>
     <string name="video_url">http://img.youtube.com/vi/</string>
     <string name="video_play_url">http://www.youtube.com/watch?v=</string>
-    <string name="poster_url">http://image.tmdb.org/t/p/w185</string>
+    <string name="poster_url">http://image.tmdb.org/t/p/w500</string>
     <string name="api_key">ee1b47f142dfc5e38d8fc312dc5d9dad</string>
     <string name="test_rate">4/5</string>
     <string name="test_title">Avengers 4</string>

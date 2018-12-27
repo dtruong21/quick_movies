@@ -20,4 +20,7 @@
     <dimen name="padding_review_rv">15dp</dimen>
     <dimen name="padding_overview_text">10dp</dimen>
     <dimen name="margin_poster">24dp</dimen>
+    <dimen name="padding_layout_info">5dp</dimen>
+    <dimen name="padding_tv_info">2dp</dimen>
+    <dimen name="appbar_height">256dp</dimen>
 </resources>

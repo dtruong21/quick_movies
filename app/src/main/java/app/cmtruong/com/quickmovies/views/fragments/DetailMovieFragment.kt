@@ -34,7 +34,7 @@ class DetailMovieFragment : Fragment() {
         private val viewModelJob = Job()
         private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-        private const val POSTER_URL = "http://image.tmdb.org/t/p/w185"
+        private const val POSTER_URL = "http://image.tmdb.org/t/p/w500"
         /**
          * get new instance of detail movie fragment
          */
@@ -62,9 +62,7 @@ class DetailMovieFragment : Fragment() {
             position = arguments!!.getInt(MOVIE_POSITION)
             movies = arguments!!.getParcelableArrayList(MOVIE_LIST)
         }
-
         populateUI(movies[position])
-
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -77,10 +75,18 @@ class DetailMovieFragment : Fragment() {
             photo.loadImage(POSTER_URL + movie.backdrop_path)
         }
 
-        movie_detail_language.text = movie.original_language
-        movie_detail_budget.text = movie.budget.toString()
-        movie_detail_rate.text = movie.vote_average.toString()
+        val language = "Language: ${movie.original_language}"
+        val budget = "Budget: ${movie.budget}"
+        val rate = "Vote average: ${movie.vote_average}"
+        val release = "Release date: ${movie.release_date}"
+        val title = "Title: ${movie.original_title}"
+
+        movie_detail_original_title.text = title
+        movie_detail_language.text = language
+        movie_detail_budget.text = budget
+        movie_detail_rate.text = rate
         movie_detail_overview.text = movie.overview
+        movie_detail_release.text = release
         detail_poster.loadImage(POSTER_URL + movie.poster_path)
 
         add_button.apply {
@@ -97,11 +103,11 @@ class DetailMovieFragment : Fragment() {
 
         share_button.apply {
             setOnClickListener {
-                val intent = Intent(Intent.ACTION_MEDIA_SHARED).apply {
+                val intent = Intent(Intent.ACTION_SEND).apply {
                     type = context.getString(R.string.type_share)
                     putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name))
-                            .putExtra(Intent.EXTRA_REFERRER_NAME, movie.original_title)
-                            .putExtra(Intent.EXTRA_TEXT, "${movie.title} with rate ${movie.vote_average}")
+                    val textShare = "${movie.title} with rate ${movie.vote_average}. Let's check the information of this film via this link: "
+                    putExtra(Intent.EXTRA_TEXT, textShare)
                 }
                 startActivity(Intent.createChooser(intent, "Share ${movie.original_title}"))
             }
@@ -111,6 +117,7 @@ class DetailMovieFragment : Fragment() {
     private fun ImageView.loadImage(url: String) {
         Picasso.get().load(url)
                 .fit()
+                .centerCrop()
                 .error(R.drawable.ic_launcher_background)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(this)
