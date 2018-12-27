@@ -31,9 +31,6 @@ class DetailMovieFragment : Fragment() {
         private const val MOVIE_POSITION = "MOVIE_POSITION"
         private const val MOVIE_LIST = "MOVIE_LIST"
 
-        private val viewModelJob = Job()
-        private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
         private const val POSTER_URL = "http://image.tmdb.org/t/p/w500"
         /**
          * get new instance of detail movie fragment
