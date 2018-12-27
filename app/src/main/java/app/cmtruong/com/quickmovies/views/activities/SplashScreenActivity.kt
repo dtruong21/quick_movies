@@ -27,7 +27,15 @@ class SplashScreenActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
         Timber.tag(TAG)
         Timber.d("$TAG is created")
+        onNewIntent(intent)
         startMainScreen()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        val action: String = intent.action
+        val data: String? = intent.dataString
+        if (Intent.ACTION_VIEW == action) Timber.d("Intent deep link: $data")
+        else Timber.d("No intent in deep link")
     }
 
     private fun startMainScreen() {
