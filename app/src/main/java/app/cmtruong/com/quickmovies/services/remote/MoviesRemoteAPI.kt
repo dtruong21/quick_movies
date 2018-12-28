@@ -1,6 +1,7 @@
 package app.cmtruong.com.quickmovies.services.remote
 
 import app.cmtruong.com.quickmovies.models.MoviesResult
+import app.cmtruong.com.quickmovies.models.ReviewResult
 import app.cmtruong.com.quickmovies.models.Reviews
 import app.cmtruong.com.quickmovies.models.Videos
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -40,7 +41,7 @@ interface MoviesRemoteAPI {
      * function which get reviews list by movie id
      */
     @GET("{movie_id}/reviews")
-    fun getMovieReviewsById(@Path("movie_id") id: Int, @Query("api_key") apiKey: String): Call<List<Reviews>>
+    fun getMovieReviewsById(@Path("movie_id") id: Int, @Query("api_key") apiKey: String): Call<ReviewResult>
 
     /**
      * function which get trailer list by movie id

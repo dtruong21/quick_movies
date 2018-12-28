@@ -1,17 +1,33 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import app.cmtruong.com.quickmovies.R
+import app.cmtruong.com.quickmovies.adapters.ReviewsAdapter
+import app.cmtruong.com.quickmovies.adapters.VideosAdapter
 import app.cmtruong.com.quickmovies.models.Movies
+import app.cmtruong.com.quickmovies.models.ReviewResult
+import app.cmtruong.com.quickmovies.models.Reviews
+import app.cmtruong.com.quickmovies.models.Videos
+import app.cmtruong.com.quickmovies.services.remote.MoviesRemoteAPI
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 
 /**
@@ -29,6 +45,9 @@ class DetailMovieFragment : Fragment() {
         private const val MOVIE_LIST = "MOVIE_LIST"
 
         private const val POSTER_URL = "http://image.tmdb.org/t/p/w500"
+
+        private val viewModelJob = Job()
+        private val defaultScope = CoroutineScope(Dispatchers.Default + viewModelJob)
         /**
          * get new instance of detail movie fragment
          */
@@ -84,6 +103,8 @@ class DetailMovieFragment : Fragment() {
         movie_detail_rating_bar.rating = rate.toFloat()
         movie_detail_popularity.text = popularity
         detail_poster.loadImage(POSTER_URL + movie.poster_path)
+        getReviews(movie)
+
 
         add_button.apply {
             setOnClickListener {
@@ -119,5 +140,47 @@ class DetailMovieFragment : Fragment() {
                 .into(this)
     }
 
+    private fun RecyclerView.setupReview(reviews: List<Reviews>) {
+        this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        this.setHasFixedSize(true)
+        this.adapter = ReviewsAdapter(reviews)
+    }
 
+    private fun RecyclerView.setupTrailer(trailers: List<Videos>) {
+        this.layoutManager = LinearLayoutManager(context)
+        this.setHasFixedSize(true)
+        this.adapter = VideosAdapter(trailers) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.video_play_url) + it.key)))
+        }
+    }
+
+    private fun getReviews(movie: Movies) {
+        Timber.d("$TAG starts requesting reviews")
+        defaultScope.launch {
+            MoviesRemoteAPI.create().getMovieReviewsById(movie.id, getString(R.string.api_key)).apply {
+                enqueue(object : Callback<ReviewResult> {
+                    override fun onFailure(call: Call<ReviewResult>, t: Throwable) {
+                        Timber.e("$TAG request reviews KO with error ${t.message}")
+                    }
+
+                    override fun onResponse(call: Call<ReviewResult>, response: Response<ReviewResult>) {
+                        val statusCode = response.code()
+                        if (response.isSuccessful && statusCode == 200) {
+                            Timber.d("$TAG request reviews OK")
+                            val result: ReviewResult? = response.body()
+                            val reviews: List<Reviews>? = result?.reviews
+                            if (reviews != null) {
+                                movie_reviews_rv.setupReview(reviews)
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModelJob.cancel()
+    }
 }
