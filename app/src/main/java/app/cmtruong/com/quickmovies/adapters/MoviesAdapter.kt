@@ -9,7 +9,6 @@ import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movies_item.view.*
-import timber.log.Timber
 
 /**
  * @author Davide Truong

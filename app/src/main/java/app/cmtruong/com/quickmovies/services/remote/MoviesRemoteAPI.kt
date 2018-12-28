@@ -1,9 +1,6 @@
 package app.cmtruong.com.quickmovies.services.remote
 
-import app.cmtruong.com.quickmovies.models.MoviesResult
-import app.cmtruong.com.quickmovies.models.ReviewResult
-import app.cmtruong.com.quickmovies.models.Reviews
-import app.cmtruong.com.quickmovies.models.Videos
+import app.cmtruong.com.quickmovies.models.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -47,7 +44,7 @@ interface MoviesRemoteAPI {
      * function which get trailer list by movie id
      */
     @GET("{movie_id}/videos")
-    fun getMovieTrailersById(@Path("movie_id") id: Int, @Query("api_key") apiKey: String): Call<List<Videos>>
+    fun getMovieTrailersById(@Path("movie_id") id: Int, @Query("api_key") apiKey: String): Call<VideoResult>
 
     companion object {
         private const val API_URL: String = "https://api.themoviedb.org/3/"

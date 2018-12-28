@@ -14,10 +14,7 @@ import android.widget.ImageView
 import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.adapters.ReviewsAdapter
 import app.cmtruong.com.quickmovies.adapters.VideosAdapter
-import app.cmtruong.com.quickmovies.models.Movies
-import app.cmtruong.com.quickmovies.models.ReviewResult
-import app.cmtruong.com.quickmovies.models.Reviews
-import app.cmtruong.com.quickmovies.models.Videos
+import app.cmtruong.com.quickmovies.models.*
 import app.cmtruong.com.quickmovies.services.remote.MoviesRemoteAPI
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
@@ -104,7 +101,7 @@ class DetailMovieFragment : Fragment() {
         movie_detail_popularity.text = popularity
         detail_poster.loadImage(POSTER_URL + movie.poster_path)
         getReviews(movie)
-
+        getTrailers(movie)
 
         add_button.apply {
             setOnClickListener {
@@ -174,6 +171,32 @@ class DetailMovieFragment : Fragment() {
                             }
                         }
                     }
+                })
+            }
+        }
+    }
+
+    private fun getTrailers(movie: Movies) {
+        Timber.d("$TAG starts requesting videos")
+        defaultScope.launch {
+            MoviesRemoteAPI.create().getMovieTrailersById(movie.id, getString(R.string.api_key)).apply {
+                enqueue(object : Callback<VideoResult> {
+                    override fun onResponse(call: Call<VideoResult>, response: Response<VideoResult>) {
+                        val statusCode = response.code()
+                        if (response.isSuccessful && statusCode == 200) {
+                            Timber.d("$TAG request reviews OK")
+                            val result: VideoResult? = response.body()
+                            val videos: List<Videos>? = result?.videos
+                            if (videos != null) {
+                                movie_trailer_rv.setupTrailer(videos)
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<VideoResult>, t: Throwable) {
+                        Timber.e("$TAG request reviews KO with error ${t.message}")
+                    }
+
                 })
             }
         }
