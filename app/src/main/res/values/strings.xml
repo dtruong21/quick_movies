@@ -24,4 +24,6 @@
     <string name="type_share">text/plain</string>
     <string name="youtube_trailers">Youtube trailers</string>
     <string name="test_video_names">Avenger trailer 1</string>
+    <string name="error_review">Error! Please verify your Internet connection</string>
+    <string name="trailer_error">Error! Please verify your Internet connection</string>
 </resources>

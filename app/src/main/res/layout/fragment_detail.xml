@@ -94,8 +94,8 @@
                         android:id="@+id/movie_detail_original_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hyphenationFrequency="none"
                         android:layout_marginStart="@dimen/padding_tv_info"
+                        android:hyphenationFrequency="none"
                         android:padding="@dimen/padding_tv_info"
                         tools:text="Title: Avenger" />
 
@@ -103,16 +103,16 @@
                         android:id="@+id/movie_detail_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/padding_tv_info"
                         android:layout_marginStart="@dimen/padding_tv_info"
+                        android:padding="@dimen/padding_tv_info"
                         tools:text="Language: en" />
 
 
                     <TextView
                         android:id="@+id/movie_detail_rate_count"
                         android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:padding="@dimen/padding_tv_info"
                         tools:text="Vote count: 3000" />
 
@@ -128,8 +128,8 @@
                     <TextView
                         android:id="@+id/movie_detail_release"
                         android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_tv_info"
                         android:padding="@dimen/padding_tv_info"
                         tools:text="Release date: January 3, 2018" />
 
@@ -195,21 +195,64 @@
                     tools:text="@string/overview_test" />
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/movie_reviews_rv"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:padding="@dimen/padding_review_rv">
+                android:layout_height="@dimen/review_layout_height">
 
-            </android.support.v7.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/movie_reviews_error"
+                    style="@android:style/TextAppearance.Material"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/error_review"
+                    android:textAlignment="center" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/movie_trailer_rv"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/movie_reviews_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_review_rv">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <ProgressBar
+                    android:id="@+id/movie_review_pb"
+                    style="@android:style/Widget.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:padding="@dimen/padding_review_rv">
+                android:layout_height="@dimen/trailer_layout_height">
 
-            </android.support.v7.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/movie_trailer_error"
+                    style="@android:style/TextAppearance.Material"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/trailer_error"
+                    android:textAlignment="center" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/movie_trailer_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_review_rv">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <ProgressBar
+                    android:id="@+id/movie_trailer_pb"
+                    style="@android:style/Widget.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+            </FrameLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
