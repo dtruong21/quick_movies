@@ -102,16 +102,21 @@ class DetailMovieFragment : Fragment() {
         detail_poster.loadImage(POSTER_URL + movie.poster_path)
         getReviews(movie)
         getTrailers(movie)
+        setupButtonEvent(movie)
+    }
 
+    private fun setupButtonEvent(movie: Movies) {
         add_button.apply {
             setOnClickListener {
                 Timber.d("$it is clicked")
+                // TODO: Add to favorite the movie.
             }
         }
 
         review_button.apply {
             setOnClickListener {
                 Timber.d("$it is clicked")
+                // TODO: Setup POST request to send reviews to the server.
             }
         }
 
@@ -137,19 +142,19 @@ class DetailMovieFragment : Fragment() {
                 .into(this)
     }
 
-    private fun loadingReviews(){
+    private fun loadingReviews() {
         movie_reviews_rv.visibility = View.GONE
         movie_review_pb.visibility = View.VISIBLE
         movie_reviews_error.visibility = View.GONE
     }
 
-    private fun displayReviews(){
+    private fun displayReviews() {
         movie_reviews_rv.visibility = View.VISIBLE
         movie_review_pb.visibility = View.GONE
         movie_reviews_error.visibility = View.GONE
     }
 
-    private fun showReviewsError(){
+    private fun showReviewsError() {
         movie_reviews_rv.visibility = View.GONE
         movie_review_pb.visibility = View.GONE
         movie_reviews_error.visibility = View.VISIBLE
@@ -189,19 +194,19 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
-    private fun loadingTrailer(){
+    private fun loadingTrailer() {
         movie_trailer_error.visibility = View.GONE
         movie_trailer_rv.visibility = View.GONE
         movie_trailer_pb.visibility = View.VISIBLE
     }
 
-    private fun showErrorTrailer(){
+    private fun showErrorTrailer() {
         movie_trailer_error.visibility = View.VISIBLE
         movie_trailer_rv.visibility = View.GONE
         movie_trailer_pb.visibility = View.GONE
     }
 
-    private fun displayTrailers(){
+    private fun displayTrailers() {
         movie_trailer_error.visibility = View.GONE
         movie_trailer_rv.visibility = View.VISIBLE
         movie_trailer_pb.visibility = View.GONE
