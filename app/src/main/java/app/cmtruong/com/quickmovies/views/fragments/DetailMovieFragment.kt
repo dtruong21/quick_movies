@@ -137,27 +137,40 @@ class DetailMovieFragment : Fragment() {
                 .into(this)
     }
 
+    private fun loadingReviews(){
+        movie_reviews_rv.visibility = View.GONE
+        movie_review_pb.visibility = View.VISIBLE
+        movie_reviews_error.visibility = View.GONE
+    }
+
+    private fun displayReviews(){
+        movie_reviews_rv.visibility = View.VISIBLE
+        movie_review_pb.visibility = View.GONE
+        movie_reviews_error.visibility = View.GONE
+    }
+
+    private fun showReviewsError(){
+        movie_reviews_rv.visibility = View.GONE
+        movie_review_pb.visibility = View.GONE
+        movie_reviews_error.visibility = View.VISIBLE
+    }
+
     private fun RecyclerView.setupReview(reviews: List<Reviews>) {
         this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         this.setHasFixedSize(true)
         this.adapter = ReviewsAdapter(reviews)
-    }
-
-    private fun RecyclerView.setupTrailer(trailers: List<Videos>) {
-        this.layoutManager = LinearLayoutManager(context)
-        this.setHasFixedSize(true)
-        this.adapter = VideosAdapter(trailers) {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.video_play_url) + it.key)))
-        }
+        displayReviews()
     }
 
     private fun getReviews(movie: Movies) {
         Timber.d("$TAG starts requesting reviews")
         defaultScope.launch {
+            loadingReviews()
             MoviesRemoteAPI.create().getMovieReviewsById(movie.id, getString(R.string.api_key)).apply {
                 enqueue(object : Callback<ReviewResult> {
                     override fun onFailure(call: Call<ReviewResult>, t: Throwable) {
                         Timber.e("$TAG request reviews KO with error ${t.message}")
+                        showReviewsError()
                     }
 
                     override fun onResponse(call: Call<ReviewResult>, response: Response<ReviewResult>) {
@@ -176,9 +189,37 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
+    private fun loadingTrailer(){
+        movie_trailer_error.visibility = View.GONE
+        movie_trailer_rv.visibility = View.GONE
+        movie_trailer_pb.visibility = View.VISIBLE
+    }
+
+    private fun showErrorTrailer(){
+        movie_trailer_error.visibility = View.VISIBLE
+        movie_trailer_rv.visibility = View.GONE
+        movie_trailer_pb.visibility = View.GONE
+    }
+
+    private fun displayTrailers(){
+        movie_trailer_error.visibility = View.GONE
+        movie_trailer_rv.visibility = View.VISIBLE
+        movie_trailer_pb.visibility = View.GONE
+    }
+
+    private fun RecyclerView.setupTrailer(trailers: List<Videos>) {
+        this.layoutManager = LinearLayoutManager(context)
+        this.setHasFixedSize(true)
+        this.adapter = VideosAdapter(trailers) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.video_play_url) + it.key)))
+        }
+        displayTrailers()
+    }
+
     private fun getTrailers(movie: Movies) {
         Timber.d("$TAG starts requesting videos")
         defaultScope.launch {
+            loadingTrailer()
             MoviesRemoteAPI.create().getMovieTrailersById(movie.id, getString(R.string.api_key)).apply {
                 enqueue(object : Callback<VideoResult> {
                     override fun onResponse(call: Call<VideoResult>, response: Response<VideoResult>) {
@@ -195,6 +236,7 @@ class DetailMovieFragment : Fragment() {
 
                     override fun onFailure(call: Call<VideoResult>, t: Throwable) {
                         Timber.e("$TAG request reviews KO with error ${t.message}")
+                        showErrorTrailer()
                     }
 
                 })
