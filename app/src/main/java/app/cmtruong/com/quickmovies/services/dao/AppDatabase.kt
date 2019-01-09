@@ -29,22 +29,17 @@ abstract class AppDatabase : RoomDatabase() {
         @JvmStatic
         val DATABASE_NAME: String = "quick_movie"
 
-        @JvmStatic
-        val LOCK: Any = Object()
-
         /**
          * get new instance of Room Database
          */
-        fun getInstance(context: Context): AppDatabase? {
-            if (INSTANCE == null) {
-                Timber.d("Database instance is not null")
-                synchronized(LOCK) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DATABASE_NAME)
-                            .fallbackToDestructiveMigration().build()
-                }
+        fun getInstance(context: Context): AppDatabase {
+            var tempInstance = INSTANCE
+            Timber.d("Database instance is not null")
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DATABASE_NAME).build()
+                INSTANCE = instance
+                instance
             }
-            Timber.d("Warning! Your database instance is null")
-            return INSTANCE
         }
 
         /**
