@@ -212,7 +212,8 @@
                     android:id="@+id/movie_reviews_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/padding_review_rv">
+                    android:padding="@dimen/padding_review_rv"
+                    tools:listitem="@layout/reviews_item">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -242,7 +243,8 @@
                     android:id="@+id/movie_trailer_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/padding_review_rv">
+                    android:padding="@dimen/padding_review_rv"
+                    tools:listitem="@layout/videos_items">
 
                 </android.support.v7.widget.RecyclerView>
 
