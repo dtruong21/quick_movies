@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/trending_title"
+            android:id="@+id/favorite_title"
             style="@android:style/TextAppearance.Material.WindowTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

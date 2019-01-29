@@ -6,10 +6,8 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import app.cmtruong.com.quickmovies.models.Movies
-import app.cmtruong.com.quickmovies.models.Reviews
-import app.cmtruong.com.quickmovies.models.Videos
+import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
-import java.util.*
 
 /**
  * My app Room database
@@ -32,7 +30,7 @@ abstract class AppDatabase : RoomDatabase() {
         /**
          * get new instance of Room Database
          */
-        fun getInstance(context: Context): AppDatabase {
+        fun getInstance(context: Context, scope: CoroutineScope): AppDatabase {
             var tempInstance = INSTANCE
             Timber.d("Database instance is not null")
             return INSTANCE ?: synchronized(this) {

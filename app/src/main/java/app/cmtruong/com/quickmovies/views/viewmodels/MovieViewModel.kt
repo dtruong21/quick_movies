@@ -20,12 +20,12 @@ import kotlinx.coroutines.launch
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     private var mRepository: MovieRepository
-    private var mMovies: LiveData<List<Movies>>
+    val mMovies: LiveData<List<Movies>>
     private var parentJob = Job()
     private val ioScope = CoroutineScope(parentJob + Dispatchers.Main)
 
     init {
-        val movieDao = AppDatabase.getInstance(application).movieDao()
+        val movieDao = AppDatabase.getInstance(application, ioScope).movieDao()
         mRepository = MovieRepository(movieDao)
         mMovies = mRepository.movies
     }

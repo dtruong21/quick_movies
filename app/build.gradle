@@ -7,14 +7,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'davidetruong'
-            keyPassword 'Halong14'
-            storeFile file('/Users/davidetruong/Documents/My Documents/android.jks')
-            storePassword 'Halong14'
-        }
-    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "app.cmtruong.com.quickmovies"
@@ -31,7 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.config
         }
         debug {
         }
