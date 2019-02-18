@@ -72,6 +72,7 @@ class FavoriteFragment: Fragment() {
     }
 
     private fun RecyclerView.setupData(movies: List<Movies>) {
+        loadingData()
         this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         this.setHasFixedSize(true)
         this.adapter = MoviesAdapter(movies){
