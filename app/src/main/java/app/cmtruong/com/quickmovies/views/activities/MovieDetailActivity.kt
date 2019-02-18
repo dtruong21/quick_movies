@@ -1,5 +1,6 @@
 package app.cmtruong.com.quickmovies.views.activities
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import app.cmtruong.com.quickmovies.R
 import app.cmtruong.com.quickmovies.models.Movies
 import app.cmtruong.com.quickmovies.views.fragments.DetailMovieFragment
+import app.cmtruong.com.quickmovies.views.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import timber.log.Timber
 

@@ -1,5 +1,6 @@
 package app.cmtruong.com.quickmovies.views.fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,7 @@ import app.cmtruong.com.quickmovies.adapters.ReviewsAdapter
 import app.cmtruong.com.quickmovies.adapters.VideosAdapter
 import app.cmtruong.com.quickmovies.models.*
 import app.cmtruong.com.quickmovies.services.remote.MoviesRemoteAPI
+import app.cmtruong.com.quickmovies.views.viewmodels.MovieViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.coroutines.CoroutineScope
@@ -61,8 +63,13 @@ class DetailMovieFragment : Fragment() {
         private var position: Int = 0
     }
 
+
+    private lateinit var movieViewModel: MovieViewModel
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Timber.d("$TAG is created")
+
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
@@ -72,6 +79,7 @@ class DetailMovieFragment : Fragment() {
             position = arguments!!.getInt(MOVIE_POSITION)
             movies = arguments!!.getParcelableArrayList(MOVIE_LIST)
         }
+        movieViewModel = ViewModelProviders.of(getInstance(position, movies)).get(MovieViewModel::class.java)
         populateUI(movies[position])
         super.onViewCreated(view, savedInstanceState)
     }
@@ -109,14 +117,13 @@ class DetailMovieFragment : Fragment() {
         add_button.apply {
             setOnClickListener {
                 Timber.d("$it is clicked")
-                // TODO: Add to favorite the movie.
+                movieViewModel.insert(movie)
             }
         }
 
         review_button.apply {
             setOnClickListener {
                 Timber.d("$it is clicked")
-                // TODO: Setup POST request to send reviews to the server.
             }
         }
 
